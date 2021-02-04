@@ -5,19 +5,68 @@
  */
 package id.dapoerberkahbandung.view;
 
+import id.dapoerberkahbandung.controller.AnggotaController;
+import id.dapoerberkahbandung.database.Koneksi;
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.event.AnggotaListener;
+import id.dapoerberkahbandung.model.AnggotaModel;
+import id.dapoerberkahbandung.model.TabelAnggotaModel;
+import id.dapoerberkahbandung.service.AnggotaDao;
+import java.sql.SQLException;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author Dandi Ahmadin
  */
-public class AnggotaView extends javax.swing.JPanel {
+public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, ListSelectionListener {
 
     /**
      * Creates new form AnggotaView
      */
+    
+    private TabelAnggotaModel tabelAnggotaModel;
+    private AnggotaModel model;
+    private AnggotaController controller;
+    
     public AnggotaView() {
+        
+        tabelAnggotaModel = new TabelAnggotaModel();
+        model = new AnggotaModel();
+        model.setListener(this);
+        
+        controller = new AnggotaController();
+        controller.setModel(model);
         initComponents();
+        tabelAnggota.setModel(tabelAnggotaModel);
+        tabelAnggota.getSelectionModel().addListSelectionListener(this);
+        
     }
 
+    public JTable getTabelAnggota() {
+        return tabelAnggota;
+    }
+
+    public JTextField getTxtAlamat() {
+        return txtAlamat;
+    }
+
+    public JTextField getTxtIdAnggota() {
+        return txtIdAnggota;
+    }
+
+    public JTextField getTxtNama() {
+        return txtNama;
+    }
+
+    public JTextField getTxtNoTelp() {
+        return txtNoTelp;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,64 +76,196 @@ public class AnggotaView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        headerPanel = new javax.swing.JPanel();
-        dataAnggotaTxt = new javax.swing.JLabel();
-        mainPanel = new javax.swing.JPanel();
+        dataAnggota = new javax.swing.JLabel();
+        idAnggota = new javax.swing.JLabel();
+        txtIdAnggota = new javax.swing.JTextField();
+        nama = new javax.swing.JLabel();
+        txtNama = new javax.swing.JTextField();
+        alamat = new javax.swing.JLabel();
+        txtAlamat = new javax.swing.JTextField();
+        noTelp = new javax.swing.JLabel();
+        txtNoTelp = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
+        btnInsert = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelAnggota = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(600, 450));
+        setBackground(new java.awt.Color(250, 245, 224));
+        setPreferredSize(new java.awt.Dimension(600, 480));
 
-        headerPanel.setBackground(new java.awt.Color(240, 0, 0));
-        headerPanel.setPreferredSize(new java.awt.Dimension(600, 100));
+        dataAnggota.setFont(new java.awt.Font("Century Gothic", 1, 26)); // NOI18N
+        dataAnggota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dataAnggota.setText("Data Anggota");
 
-        dataAnggotaTxt.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        dataAnggotaTxt.setForeground(new java.awt.Color(255, 255, 255));
-        dataAnggotaTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dataAnggotaTxt.setText("Data Anggota");
+        idAnggota.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idAnggota.setText("Id Anggota :");
 
-        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
-        headerPanel.setLayout(headerPanelLayout);
-        headerPanelLayout.setHorizontalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dataAnggotaTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-        );
-        headerPanelLayout.setVerticalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dataAnggotaTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
+        nama.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        nama.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nama.setText("Nama :");
 
-        mainPanel.setBackground(new java.awt.Color(102, 102, 255));
+        alamat.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        alamat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        alamat.setText("Alamat :");
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
+        noTelp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        noTelp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        noTelp.setText("Nomor Telepon :");
+
+        txtNoTelp.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+
+        btnReset.setText("Reset");
+
+        btnInsert.setText("Tambah");
+
+        btnUpdate.setText("Ubah");
+
+        btnDelete.setText("Hapus");
+
+        tabelAnggota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelAnggota);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(alamat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(idAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(noTelp)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnReset)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnInsert)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnUpdate)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDelete))
+                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 104, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(dataAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(dataAnggota)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idAnggota)
+                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nama)
+                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(alamat)
+                    .addComponent(txtNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noTelp, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnReset)
+                    .addComponent(btnInsert)
+                    .addComponent(btnDelete))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dataAnggotaTxt;
-    private javax.swing.JPanel headerPanel;
-    private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel alamat;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel dataAnggota;
+    private javax.swing.JLabel idAnggota;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel nama;
+    private javax.swing.JLabel noTelp;
+    private javax.swing.JTable tabelAnggota;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextField txtIdAnggota;
+    private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtNoTelp;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(AnggotaModel model) {
+        txtIdAnggota.setText(model.getId_anggota());
+        txtNama.setText(model.getNama());
+        txtAlamat.setText(model.getAlamat());
+        txtNoTelp.setText(model.getNo_telp());
+    }
+
+    @Override
+    public void onInsert(Anggota anggota) {
+        tabelAnggotaModel.add(anggota);
+    }
+
+    @Override
+    public void onUpdate(Anggota anggota) {
+        int index = tabelAnggota.getSelectedRow();
+        tabelAnggotaModel.set(index, anggota);
+    }
+
+    @Override
+    public void onDelete() {
+        int index = tabelAnggota.getSelectedRow();
+        tabelAnggotaModel.remove(index);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        try {
+            Anggota model = tabelAnggotaModel.get(tabelAnggota.getSelectedRow());
+            txtIdAnggota.setText(model.getId_anggota());
+            txtNama.setText(model.getNama());
+            txtAlamat.setText(model.getAlamat());
+            txtNoTelp.setText(model.getNo_telp());
+            
+        } catch (IndexOutOfBoundsException ex) {
+        }
+    }
+    
+    public void loadDatabase() throws SQLException, AnggotaException {
+        AnggotaDao dao = Koneksi.getAnggotaDao();
+        tabelAnggotaModel.setArrayList(dao.selectAllAnggota());
+    }
 }
