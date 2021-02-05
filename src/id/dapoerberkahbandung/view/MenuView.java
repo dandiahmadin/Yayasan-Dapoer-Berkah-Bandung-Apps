@@ -5,6 +5,12 @@
  */
 package id.dapoerberkahbandung.view;
 
+import id.dapoerberkahbandung.error.AnggotaException;
+import java.awt.PopupMenu;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Dandi Ahmadin
@@ -14,10 +20,13 @@ public class MenuView extends javax.swing.JPanel {
     /**
      * Creates new form MenuView
      */
+    AnggotaView anggotaPanel = new AnggotaView();
+    
     public MenuView() {
         initComponents();
-    }
 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +49,11 @@ public class MenuView extends javax.swing.JPanel {
 
         btnBeranda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnBeranda.setText("Beranda");
+        btnBeranda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBerandaActionPerformed(evt);
+            }
+        });
 
         btnPemasukan.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnPemasukan.setText("Pemasukan");
@@ -138,7 +152,42 @@ public class MenuView extends javax.swing.JPanel {
 
     private void btnAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnggotaActionPerformed
         // TODO add your handling code here:
+        // remove all
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        
+        // add 
+        MainView.mainPanel.add(anggotaPanel);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        try {    
+            anggotaPanel.loadDatabase();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AnggotaException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnAnggotaActionPerformed
+
+    private void btnBerandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBerandaActionPerformed
+        // TODO add your handling code here:
+        
+        // remove all
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        BerandaView berandaPanel = new BerandaView();
+        
+        // add 
+        MainView.mainPanel.add(berandaPanel);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+    }//GEN-LAST:event_btnBerandaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
