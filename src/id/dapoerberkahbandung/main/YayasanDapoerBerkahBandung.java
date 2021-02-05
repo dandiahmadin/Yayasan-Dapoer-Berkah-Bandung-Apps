@@ -5,11 +5,8 @@
  */
 package id.dapoerberkahbandung.main;
 
-import id.dapoerberkahbandung.error.AnggotaException;
+
 import id.dapoerberkahbandung.view.MainView;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 
@@ -22,22 +19,17 @@ public class YayasanDapoerBerkahBandung {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, AnggotaException {
+    public static void main(String[] args) {
         // TODO code application logic here
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    MainView mainView = new MainView();
-                    mainView.loadDatabase();
-                    mainView.setVisible(true);
-                } catch (SQLException e) {
-                } catch (AnggotaException ex) {
-                    Logger.getLogger(YayasanDapoerBerkahBandung.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                MainView mainView = new MainView();
+                mainView.setVisible(true);
             }
             
         });
+        
     }
     
 }
