@@ -7,7 +7,7 @@ package id.dapoerberkahbandung.service;
 
 import id.dapoerberkahbandung.entity.Anggota;
 import id.dapoerberkahbandung.error.AnggotaException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,5 +27,5 @@ public interface AnggotaDao {
     public Anggota getAnggota(String id_anggota) throws AnggotaException;
     
     // menampilkan semua data anggota
-    public ArrayList<Anggota> selectAllAnggota() throws AnggotaException;
+    public List<Anggota> selectAllAnggota() throws AnggotaException;
 }

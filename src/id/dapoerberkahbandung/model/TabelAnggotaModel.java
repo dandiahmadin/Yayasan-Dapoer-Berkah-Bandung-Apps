@@ -7,6 +7,7 @@ package id.dapoerberkahbandung.model;
 
 import id.dapoerberkahbandung.entity.Anggota;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -15,15 +16,15 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TabelAnggotaModel extends AbstractTableModel {
 
-    ArrayList<Anggota> arrayList = new ArrayList<Anggota>();
+    List<Anggota> list = new ArrayList<Anggota>();
 
-    public void setArrayList(ArrayList<Anggota> arrayList) {
-        this.arrayList = arrayList;
+    public void setList(List<Anggota> list) {
+        this.list = list;
     }
     
     @Override
     public int getRowCount() {
-        return arrayList.size();
+        return list.size();
     }
 
     @Override
@@ -34,10 +35,10 @@ public class TabelAnggotaModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
-            case 0: return arrayList.get(rowIndex).getId_anggota();
-            case 1: return arrayList.get(rowIndex).getNama();
-            case 2: return arrayList.get(rowIndex).getAlamat();
-            case 3: return arrayList.get(rowIndex).getNo_telp();
+            case 0: return list.get(rowIndex).getId_anggota();
+            case 1: return list.get(rowIndex).getNama();
+            case 2: return list.get(rowIndex).getAlamat();
+            case 3: return list.get(rowIndex).getNo_telp();
             default: return null;
         }
     }
@@ -54,12 +55,12 @@ public class TabelAnggotaModel extends AbstractTableModel {
     }
 
     public  Anggota get(int index) {
-        return arrayList.get(index);
+        return list.get(index);
     }
 
     public Anggota set(int index, Anggota e) {
         try {
-            return arrayList.set(index, e);
+            return list.set(index, e);
         } finally {
             fireTableRowsUpdated(index, index);
         }
@@ -67,7 +68,7 @@ public class TabelAnggotaModel extends AbstractTableModel {
 
     public boolean add(Anggota e) {
         try {
-            return arrayList.add(e);
+            return list.add(e);
         } finally {
             fireTableRowsInserted(getRowCount()-1, getRowCount()-1);
         }
@@ -75,7 +76,7 @@ public class TabelAnggotaModel extends AbstractTableModel {
 
     public Anggota remove(int index) {
         try {
-            return arrayList.remove(index);
+            return list.remove(index);
         } finally {
             fireTableRowsDeleted(index, index);
         }

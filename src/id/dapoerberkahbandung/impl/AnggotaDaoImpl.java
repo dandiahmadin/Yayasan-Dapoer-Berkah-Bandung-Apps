@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -184,9 +185,9 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
 
     @Override
-    public ArrayList<Anggota> selectAllAnggota() throws AnggotaException {
+    public List<Anggota> selectAllAnggota() throws AnggotaException {
         Statement statement = null;
-        ArrayList<Anggota> arrayList = new ArrayList<>();
+        List<Anggota> list = new ArrayList<Anggota>();
         
         try {
             connection.setAutoCommit(false);
@@ -199,10 +200,10 @@ public class AnggotaDaoImpl implements AnggotaDao {
                 anggota.setAlamat(result.getString("alamat"));
                 anggota.setNo_telp(result.getString("no_telp"));
                 
-                arrayList.add(anggota);
+                list.add(anggota);
             }
             connection.commit();
-            return arrayList;
+            return list;
             
         } catch (SQLException e) {
             try {
