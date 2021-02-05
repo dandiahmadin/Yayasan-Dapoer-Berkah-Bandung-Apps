@@ -18,20 +18,9 @@ public class MainView extends javax.swing.JFrame {
      * Creates new form MainView
      */
     
-//    Palet Warna
-//    Primary : 250, 245, 224
-//    Secondary : 253, 234, 140
-//    gray : 190, 190, 190
-//    white : 255, 255, 255
-//    black : 0,0,0
-    
-            public MainView() {
+    public MainView() {
         initComponents();
         
-    }
-
-    public void loadDatabase() throws SQLException, AnggotaException {
-        anggotaView.loadDatabase();
     }
     
     /**
@@ -43,46 +32,36 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menu = new javax.swing.JPanel();
+        menuPanel = new javax.swing.JPanel();
         menuView = new id.dapoerberkahbandung.view.MenuView();
-        main = new javax.swing.JPanel();
-        anggotaView = new id.dapoerberkahbandung.view.AnggotaView();
+        mainPanel = new javax.swing.JPanel();
+        berandaView = new id.dapoerberkahbandung.view.BerandaView();
+        anggotaView1 = new id.dapoerberkahbandung.view.AnggotaView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
         setResizable(false);
 
-        menu.setPreferredSize(new java.awt.Dimension(200, 480));
+        menuPanel.setLayout(new java.awt.CardLayout());
+        menuPanel.add(menuView, "card2");
 
-        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
-        menu.setLayout(menuLayout);
-        menuLayout.setHorizontalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(menuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        menuLayout.setVerticalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        main.setLayout(new java.awt.CardLayout());
-        main.add(anggotaView, "card2");
+        mainPanel.setLayout(new java.awt.CardLayout());
+        mainPanel.add(berandaView, "card2");
+        mainPanel.add(anggotaView1, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -125,9 +104,10 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private id.dapoerberkahbandung.view.AnggotaView anggotaView;
-    private javax.swing.JPanel main;
-    private javax.swing.JPanel menu;
+    private id.dapoerberkahbandung.view.AnggotaView anggotaView1;
+    private id.dapoerberkahbandung.view.BerandaView berandaView;
+    public static javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel menuPanel;
     private id.dapoerberkahbandung.view.MenuView menuView;
     // End of variables declaration//GEN-END:variables
 }
