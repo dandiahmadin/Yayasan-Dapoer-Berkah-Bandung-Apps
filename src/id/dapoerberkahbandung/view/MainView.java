@@ -7,6 +7,8 @@ package id.dapoerberkahbandung.view;
 
 import id.dapoerberkahbandung.error.AnggotaException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,10 +35,18 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         menuPanel = new javax.swing.JPanel();
-        menuView = new id.dapoerberkahbandung.view.MenuView();
+        try {
+            menuView = new id.dapoerberkahbandung.view.MenuView();
+        } catch (java.sql.SQLException e1) {
+            e1.printStackTrace();
+        }
         mainPanel = new javax.swing.JPanel();
         berandaView = new id.dapoerberkahbandung.view.BerandaView();
-        anggotaView1 = new id.dapoerberkahbandung.view.AnggotaView();
+        try {
+            anggotaView = new id.dapoerberkahbandung.view.AnggotaView();
+        } catch (java.sql.SQLException e1) {
+            e1.printStackTrace();
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
@@ -47,7 +57,7 @@ public class MainView extends javax.swing.JFrame {
 
         mainPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(berandaView, "card2");
-        mainPanel.add(anggotaView1, "card3");
+        mainPanel.add(anggotaView, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,12 +109,13 @@ public class MainView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainView().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private id.dapoerberkahbandung.view.AnggotaView anggotaView1;
+    private id.dapoerberkahbandung.view.AnggotaView anggotaView;
     private id.dapoerberkahbandung.view.BerandaView berandaView;
     public static javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
