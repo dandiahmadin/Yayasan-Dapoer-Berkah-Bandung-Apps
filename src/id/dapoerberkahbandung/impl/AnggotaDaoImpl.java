@@ -28,7 +28,9 @@ public class AnggotaDaoImpl implements AnggotaDao {
     private final String deleteAnggota = "DELETE FROM anggota WHERE id_anggota=?";
     private final String getAnggota = "SELECT * FROM anggota WHERE id_anggota=?";
     private final String selectAll = "SELECT * FROM anggota";
-    
+    private final String autoInsertId = "SELECT id_anggota FROM anggota";
+    private String id_no = "0000";
+    private String id = null;
     
     public AnggotaDaoImpl(Connection connection) {
         this.connection = connection;
@@ -39,10 +41,11 @@ public class AnggotaDaoImpl implements AnggotaDao {
     @Override
     public void insertAnggota(Anggota anggota) throws AnggotaException {
         PreparedStatement statement = null;
-        
+
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(insertAnggota);
+
             statement.setString(1, anggota.getId_anggota());
             statement.setString(2, anggota.getNama());
             statement.setString(3, anggota.getAlamat());
@@ -224,6 +227,47 @@ public class AnggotaDaoImpl implements AnggotaDao {
                 }
             }
         }
+    }
+
+    @Override
+    public String autoGenerateId() {
+        Statement statement = null;
+        
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(autoInsertId);
+                
+            if (result.last()) {
+                id_no = result.getString("id_anggota");
+                id_no = id_no.substring(1, 4);
+            }
+               
+            Integer no = Integer.parseInt(id_no);
+            no++;
+            
+            id = "A".concat(String.format("%03d", no));
+            
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        return id;
     }
     
 }
