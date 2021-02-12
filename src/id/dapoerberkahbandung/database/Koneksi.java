@@ -8,7 +8,9 @@ package id.dapoerberkahbandung.database;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import id.dapoerberkahbandung.impl.AnggotaDaoImpl;
+import id.dapoerberkahbandung.impl.DonaturDaoImpl;
 import id.dapoerberkahbandung.service.AnggotaDao;
+import id.dapoerberkahbandung.service.DonaturDao;
 import java.sql.SQLException;
 
 /**
@@ -18,6 +20,7 @@ import java.sql.SQLException;
 public class Koneksi {
     private static Connection connection;
     private static AnggotaDao anggotaDao;
+    private static DonaturDao donaturDao;
     
     public static Connection getConnection() throws SQLException {
         if(connection == null) {
@@ -37,6 +40,14 @@ public class Koneksi {
         }
         
         return anggotaDao;
+    }
+    
+    public static DonaturDao getDonaturDao() throws SQLException {
+        if (donaturDao == null) {
+            donaturDao = new DonaturDaoImpl(getConnection());
+        }
+        
+        return donaturDao;
     }
     
 }
