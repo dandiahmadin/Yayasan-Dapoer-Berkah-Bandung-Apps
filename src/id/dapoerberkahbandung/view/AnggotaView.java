@@ -14,7 +14,10 @@ import id.dapoerberkahbandung.model.AnggotaModel;
 import id.dapoerberkahbandung.model.TabelAnggotaModel;
 import id.dapoerberkahbandung.service.AnggotaDao;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,7 +36,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
     private AnggotaModel model;
     private AnggotaController controller;
     
-    public AnggotaView() {
+    public AnggotaView() throws SQLException {
         
         tabelAnggotaModel = new TabelAnggotaModel();
         model = new AnggotaModel();
@@ -45,13 +48,14 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         tabelAnggota.setModel(tabelAnggotaModel);
         tabelAnggota.getSelectionModel().addListSelectionListener(this);
         
+        model.resetAnggota();
     }
 
     public JTable getTabelAnggota() {
         return tabelAnggota;
     }
 
-    public JTextField getTxtAlamat() {
+    public JTextArea getTxtAlamat() {
         return txtAlamat;
     }
 
@@ -82,7 +86,6 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         nama = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         alamat = new javax.swing.JLabel();
-        txtAlamat = new javax.swing.JTextField();
         noTelp = new javax.swing.JLabel();
         txtNoTelp = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
@@ -91,6 +94,8 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelAnggota = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAlamat = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(250, 245, 224));
         setPreferredSize(new java.awt.Dimension(600, 480));
@@ -102,6 +107,8 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         idAnggota.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idAnggota.setText("Id Anggota :");
+
+        txtIdAnggota.setEditable(false);
 
         nama.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         nama.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -158,28 +165,31 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         ));
         jScrollPane1.setViewportView(tabelAnggota);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txtAlamat.setColumns(20);
+        txtAlamat.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtAlamat.setRows(5);
+        jScrollPane2.setViewportView(txtAlamat);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dataAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(alamat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(idAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNama)
+                            .addComponent(jScrollPane2)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(noTelp)
                         .addGap(18, 18, 18)
@@ -195,7 +205,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNoTelp)
                                 .addGap(148, 148, 148)))))
-                .addGap(16, 16, 16))
+                .addGap(107, 107, 107))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -215,10 +225,13 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                     .addComponent(nama)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alamat)
-                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(alamat)
+                        .addGap(50, 50, 50))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noTelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -230,13 +243,17 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                     .addComponent(btnDelete))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        controller.resetAnggota(this);
+            // TODO add your handling code here:
+        try {
+            controller.resetAnggota(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnggotaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
@@ -264,10 +281,11 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
     private javax.swing.JLabel dataAnggota;
     private javax.swing.JLabel idAnggota;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel nama;
     private javax.swing.JLabel noTelp;
     private javax.swing.JTable tabelAnggota;
-    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtIdAnggota;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNoTelp;
