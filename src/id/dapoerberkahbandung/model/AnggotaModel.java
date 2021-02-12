@@ -123,11 +123,13 @@ public class AnggotaModel {
         fireOnDelete();
     }
     
-    public void resetAnggota() {
-        setId_anggota("");
+    public void resetAnggota() throws SQLException {
+        AnggotaDao dao = Koneksi.getAnggotaDao();
+        setId_anggota(dao.autoGenerateId());
         setNama("");
         setAlamat("");
         setNo_telp("");
+        
     }
     
 }
