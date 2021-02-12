@@ -28,4 +28,7 @@ public interface AnggotaDao {
     
     // menampilkan semua data anggota
     public List<Anggota> selectAllAnggota() throws AnggotaException;
+    
+    // autogenerate id
+    public String autoGenerateId();
 }
