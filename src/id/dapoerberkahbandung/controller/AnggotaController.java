@@ -7,6 +7,7 @@ package id.dapoerberkahbandung.controller;
 
 import id.dapoerberkahbandung.model.AnggotaModel;
 import id.dapoerberkahbandung.view.AnggotaView;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +21,7 @@ public class AnggotaController {
         this.model = model;
     }
     
-    public void resetAnggota(AnggotaView view) {
+    public void resetAnggota(AnggotaView view) throws SQLException {
         model.resetAnggota();
     }
     
@@ -30,11 +31,7 @@ public class AnggotaController {
         String alamat = view.getTxtAlamat().getText();
         String no_telp = view.getTxtNoTelp().getText();
 
-        if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "Id Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Lebih Dari 4 Karakter!");
-        } else if (nama.trim().equals("")) {
+        if (nama.trim().equals("")) {
             JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Kosong!");
         } else if (nama.length() > 50) {
             JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Lebih Dari 50 Karakter!");
@@ -68,11 +65,7 @@ public class AnggotaController {
         String alamat = view.getTxtAlamat().getText();
         String no_telp = view.getTxtNoTelp().getText();
 
-        if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "Id Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Lebih Dari 4 Karakter!");
-        } else if (nama.trim().equals("")) {
+        if (nama.trim().equals("")) {
             JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Kosong!");
         } else if (nama.length() > 50) {
             JOptionPane.showMessageDialog(view, "Nama Tidak Boleh Lebih Dari 50 Karakter!");
