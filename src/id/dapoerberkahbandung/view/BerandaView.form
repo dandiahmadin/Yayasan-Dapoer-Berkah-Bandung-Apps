@@ -33,7 +33,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="pengeluaranPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="saldoPanel" min="-2" pref="480" max="-2" attributes="0"/>
+                  <Component id="saldoPanel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>

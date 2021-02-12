@@ -16,6 +16,7 @@ public class BerandaView extends javax.swing.JPanel {
      */
     public BerandaView() {
         initComponents();
+        
     }
 
     /**
