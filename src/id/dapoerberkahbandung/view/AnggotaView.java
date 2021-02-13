@@ -86,6 +86,8 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         nama = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         alamat = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAlamat = new javax.swing.JTextArea();
         noTelp = new javax.swing.JLabel();
         txtNoTelp = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
@@ -94,8 +96,6 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelAnggota = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAlamat = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(250, 245, 224));
         setPreferredSize(new java.awt.Dimension(600, 480));
@@ -106,24 +106,36 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
 
         idAnggota.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        idAnggota.setText("Id Anggota :");
+        idAnggota.setText("ID Anggota :");
 
         txtIdAnggota.setEditable(false);
+        txtIdAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
         nama.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         nama.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nama.setText("Nama :");
 
+        txtNama.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
         alamat.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         alamat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         alamat.setText("Alamat :");
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txtAlamat.setColumns(20);
+        txtAlamat.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        txtAlamat.setRows(5);
+        jScrollPane2.setViewportView(txtAlamat);
 
         noTelp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         noTelp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         noTelp.setText("Nomor Telepon :");
 
+        txtNoTelp.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         txtNoTelp.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
+        btnReset.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +143,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
             }
         });
 
+        btnInsert.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnInsert.setText("Tambah");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +151,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
             }
         });
 
+        btnUpdate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnUpdate.setText("Ubah");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +159,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
             }
         });
 
+        btnDelete.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnDelete.setText("Hapus");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,35 +180,32 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
         ));
         jScrollPane1.setViewportView(tabelAnggota);
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        txtAlamat.setColumns(20);
-        txtAlamat.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtAlamat.setRows(5);
-        jScrollPane2.setViewportView(txtAlamat);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dataAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(alamat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama)
-                            .addComponent(jScrollPane2)))
+                            .addComponent(idAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(noTelp)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnReset)
                                 .addGap(18, 18, 18)
@@ -202,10 +214,8 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                                 .addComponent(btnUpdate)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDelete))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNoTelp)
-                                .addGap(148, 148, 148)))))
-                .addGap(107, 107, 107))
+                            .addComponent(txtNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -216,7 +226,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(dataAnggota)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idAnggota)
                     .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -226,12 +236,9 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(alamat)
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(alamat)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noTelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNoTelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,8 +249,8 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
                     .addComponent(btnInsert)
                     .addComponent(btnDelete))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
