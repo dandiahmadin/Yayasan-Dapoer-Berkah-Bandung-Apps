@@ -6,6 +6,7 @@
 package id.dapoerberkahbandung.view;
 
 import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.DonaturException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,10 +19,12 @@ public class MenuView extends javax.swing.JPanel {
     
     private AnggotaView berandaView;
     private AnggotaView anggotaView;
+    private DonaturView donaturView;
     
     public MenuView() throws SQLException {
         initComponents();
         anggotaView = new AnggotaView();
+        donaturView = new DonaturView();
     }
     
 /**
@@ -76,6 +79,11 @@ public class MenuView extends javax.swing.JPanel {
 
         btnDonatur.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnDonatur.setText("Donatur");
+        btnDonatur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDonaturActionPerformed(evt);
+            }
+        });
 
         btnKebutuhan.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnKebutuhan.setText("Kebutuhan");
@@ -165,9 +173,7 @@ public class MenuView extends javax.swing.JPanel {
         
         try {    
             anggotaView.loadDatabase();
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AnggotaException ex) {
+        } catch (SQLException | AnggotaException ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -188,6 +194,26 @@ public class MenuView extends javax.swing.JPanel {
         MainView.mainPanel.repaint();
         MainView.mainPanel.revalidate();
     }//GEN-LAST:event_btnBerandaActionPerformed
+
+    private void btnDonaturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonaturActionPerformed
+        // TODO add your handling code here:
+        // remove all
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        
+        // add 
+        MainView.mainPanel.add(donaturView);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        try {    
+            donaturView.loadDatabase();
+        } catch (SQLException | DonaturException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDonaturActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

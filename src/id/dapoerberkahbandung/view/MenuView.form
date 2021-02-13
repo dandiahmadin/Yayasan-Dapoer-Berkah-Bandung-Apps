@@ -122,6 +122,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Donatur"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDonaturActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnKebutuhan">
       <Properties>
