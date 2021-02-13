@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +38,7 @@ public class DonaturDaoImpl implements DonaturDao{
     
     
     @Override
-    public void autoGenerateId() {
+    public String autoGenerateId() {
         Statement statement = null;
                 
         try {
@@ -78,6 +76,7 @@ public class DonaturDaoImpl implements DonaturDao{
             }
             
         }
+        return id;
  
     }
 
