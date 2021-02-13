@@ -14,7 +14,7 @@ import java.util.List;
  * @author Dandi Ahmadin
  */
 public interface DonaturDao {
-    public void autoGenerateId();
+    public String autoGenerateId();
     
     public void insertDonatur(Donatur donatur) throws DonaturException;
     public void updateDonatur(Donatur donatur) throws DonaturException;
