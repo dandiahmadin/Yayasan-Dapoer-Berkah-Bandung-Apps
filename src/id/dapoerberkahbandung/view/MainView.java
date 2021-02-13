@@ -5,10 +5,10 @@
  */
 package id.dapoerberkahbandung.view;
 
-import id.dapoerberkahbandung.error.AnggotaException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -20,7 +20,7 @@ public class MainView extends javax.swing.JFrame {
      * Creates new form MainView
      */
     
-    public MainView() {
+    public MainView() throws SQLException {
         initComponents();
         
     }
@@ -47,6 +47,11 @@ public class MainView extends javax.swing.JFrame {
         } catch (java.sql.SQLException e1) {
             e1.printStackTrace();
         }
+        try {
+            donaturView = new id.dapoerberkahbandung.view.DonaturView();
+        } catch (java.sql.SQLException e1) {
+            e1.printStackTrace();
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
@@ -57,7 +62,8 @@ public class MainView extends javax.swing.JFrame {
 
         mainPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(berandaView, "card2");
-        mainPanel.add(anggotaView, "card3");
+        mainPanel.add(anggotaView, "card4");
+        mainPanel.add(donaturView, "card4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,7 +114,11 @@ public class MainView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                try {
+                    new MainView().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
@@ -117,6 +127,7 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private id.dapoerberkahbandung.view.AnggotaView anggotaView;
     private id.dapoerberkahbandung.view.BerandaView berandaView;
+    private id.dapoerberkahbandung.view.DonaturView donaturView;
     public static javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
     private id.dapoerberkahbandung.view.MenuView menuView;
