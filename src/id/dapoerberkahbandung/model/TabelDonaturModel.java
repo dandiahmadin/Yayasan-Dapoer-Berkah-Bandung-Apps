@@ -67,9 +67,9 @@ public class TabelDonaturModel extends AbstractTableModel{
         }
     }
 
-    public void add(int index, Donatur donatur) {
+    public void add(Donatur donatur) {
         try {
-            list.add(index, donatur);
+            list.add(donatur);
         } finally {
             fireTableRowsInserted(getRowCount()-1, getRowCount()-1);
         }

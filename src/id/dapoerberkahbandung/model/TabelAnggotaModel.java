@@ -46,7 +46,7 @@ public class TabelAnggotaModel extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case 0: return "Id Anggota";
+            case 0: return "ID Anggota";
             case 1: return "Nama";
             case 2: return "Alamat";
             case 3: return "Nomor Telepon";
