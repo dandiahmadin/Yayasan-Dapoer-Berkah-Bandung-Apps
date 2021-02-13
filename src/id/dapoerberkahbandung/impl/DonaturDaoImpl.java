@@ -54,7 +54,7 @@ public class DonaturDaoImpl implements DonaturDao{
             Integer no = Integer.parseInt(id_no);
             no++;
             
-            id = "A".concat(String.format("%03s", id_no));
+            id = "D".concat(String.format("%03d", no));
             
             connection.commit();
         } catch (SQLException e) {
