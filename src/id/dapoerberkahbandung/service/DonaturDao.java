@@ -18,8 +18,8 @@ public interface DonaturDao {
     
     public void insertDonatur(Donatur donatur) throws DonaturException;
     public void updateDonatur(Donatur donatur) throws DonaturException;
-    public void deleteDonatur() throws DonaturException;
-    public void getDonatur(String id_anggota) throws DonaturException;
+    public void deleteDonatur(String id_donatur) throws DonaturException;
+    public Donatur getDonatur(String id_donatur) throws DonaturException;
     public List<Donatur> selectAllDonatur() throws DonaturException;
     
 }
