@@ -6,9 +6,6 @@
 package id.dapoerberkahbandung.main;
 
 
-import id.dapoerberkahbandung.database.Koneksi;
-import id.dapoerberkahbandung.impl.AnggotaDaoImpl;
-import id.dapoerberkahbandung.service.AnggotaDao;
 import id.dapoerberkahbandung.view.MainView;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,13 +22,18 @@ public class YayasanDapoerBerkahBandung {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // TODO code application logic here
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainView mainView = new MainView();
-                mainView.setVisible(true);
+                try {
+                    MainView mainView = new MainView();
+                    mainView.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(YayasanDapoerBerkahBandung.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
             
         });
