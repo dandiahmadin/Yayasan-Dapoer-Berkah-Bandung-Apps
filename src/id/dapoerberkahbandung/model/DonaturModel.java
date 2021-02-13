@@ -26,6 +26,7 @@ public class DonaturModel {
 
     public void setId_donatur(String id_donatur) {
         this.id_donatur = id_donatur;
+        fireOnChange();
     }
 
     public String getNama() {
@@ -34,6 +35,7 @@ public class DonaturModel {
 
     public void setNama(String nama) {
         this.nama = nama;
+        fireOnChange();
     }
 
     public String getAlamat() {
@@ -42,6 +44,7 @@ public class DonaturModel {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+        fireOnChange();
     }
 
     public String getNo_telp() {
@@ -50,6 +53,7 @@ public class DonaturModel {
 
     public void setNo_telp(String no_telp) {
         this.no_telp = no_telp;
+        fireOnChange();
     }
 
     public DonaturListener getListener() {
@@ -60,9 +64,9 @@ public class DonaturModel {
         this.listener = listener;
     }
 
-    public void fireOnChange(DonaturModel donatur) {
+    public void fireOnChange() {
         if(listener != null) {
-            listener.onChange(donatur);
+            listener.onChange(this);
         }
     }
 
@@ -119,7 +123,6 @@ public class DonaturModel {
     
     public void resetDonatur() throws SQLException {
         DonaturDao dao = Koneksi.getDonaturDao();
-//        setId_donatur(dao.autoGenerateId());
         setId_donatur(dao.autoGenerateId());
         setNama("");
         setAlamat("");
