@@ -27,44 +27,48 @@ public class KebutuhanView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dataAnggota = new javax.swing.JLabel();
-        idDonatur = new javax.swing.JLabel();
-        nama = new javax.swing.JLabel();
-        txtIdDonatur = new javax.swing.JTextField();
-        txtNama = new javax.swing.JTextField();
+        dataKebutuhan = new javax.swing.JLabel();
+        idKebutuhan = new javax.swing.JLabel();
+        kebutuhan = new javax.swing.JLabel();
+        txtIdKebutuhan = new javax.swing.JTextField();
+        txtKebutuhan = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelKebutuhan = new javax.swing.JTable();
+        btnReset = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(600, 480));
 
-        dataAnggota.setFont(new java.awt.Font("Century Gothic", 1, 26)); // NOI18N
-        dataAnggota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dataAnggota.setText("Data Kebutuhan");
+        dataKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 26)); // NOI18N
+        dataKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dataKebutuhan.setText("Data Kebutuhan");
 
-        idDonatur.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        idDonatur.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        idDonatur.setText("ID Kebutuhan :");
+        idKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        idKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idKebutuhan.setText("ID Kebutuhan :");
 
-        nama.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        nama.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        nama.setText("Kebutuhan :");
+        kebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        kebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        kebutuhan.setText("Kebutuhan :");
 
-        txtIdDonatur.setEditable(false);
-        txtIdDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        txtIdDonatur.addActionListener(new java.awt.event.ActionListener() {
+        txtIdKebutuhan.setEditable(false);
+        txtIdKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        txtIdKebutuhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdDonaturActionPerformed(evt);
+                txtIdKebutuhanActionPerformed(evt);
             }
         });
 
-        txtNama.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        txtNama.addActionListener(new java.awt.event.ActionListener() {
+        txtKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        txtKebutuhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaActionPerformed(evt);
+                txtKebutuhanActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelKebutuhan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +79,39 @@ public class KebutuhanView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelKebutuhan);
+
+        btnReset.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        btnTambah.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnTambah.setText("Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
+
+        btnUbah.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
+
+        btnHapus.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,55 +120,99 @@ public class KebutuhanView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dataAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                    .addComponent(dataKebutuhan, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(kebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(btnReset)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTambah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUbah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnHapus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(dataAnggota)
+                .addComponent(dataKebutuhan)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idDonatur)
-                    .addComponent(txtIdDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idKebutuhan)
+                    .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nama)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                    .addComponent(kebutuhan)
+                    .addComponent(txtKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReset)
+                    .addComponent(btnTambah)
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdDonaturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdDonaturActionPerformed
+    private void txtIdKebutuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdKebutuhanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdDonaturActionPerformed
+    }//GEN-LAST:event_txtIdKebutuhanActionPerformed
 
-    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+    private void txtKebutuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKebutuhanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaActionPerformed
+    }//GEN-LAST:event_txtKebutuhanActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        try {
+            controller.resetDonatur(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(DonaturView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+        controller.insertDonatur(this);
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        controller.updateDonatur(this);
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        controller.deleteAnggota(this);
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dataAnggota;
-    private javax.swing.JLabel idDonatur;
+    private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnTambah;
+    private javax.swing.JButton btnUbah;
+    private javax.swing.JLabel dataKebutuhan;
+    private javax.swing.JLabel idKebutuhan;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel nama;
-    private javax.swing.JTextField txtIdDonatur;
-    private javax.swing.JTextField txtNama;
+    private javax.swing.JLabel kebutuhan;
+    private javax.swing.JTable tabelKebutuhan;
+    private javax.swing.JTextField txtIdKebutuhan;
+    private javax.swing.JTextField txtKebutuhan;
     // End of variables declaration//GEN-END:variables
 }
