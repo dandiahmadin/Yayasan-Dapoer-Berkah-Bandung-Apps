@@ -5,20 +5,13 @@
  */
 package id.dapoerberkahbandung.view;
 
-import id.dapoerberkahbandung.controller.DonaturController;
 import id.dapoerberkahbandung.controller.KebutuhanController;
 import id.dapoerberkahbandung.database.Koneksi;
-import id.dapoerberkahbandung.entity.Donatur;
 import id.dapoerberkahbandung.entity.Kebutuhan;
-import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.KebutuhanException;
-import id.dapoerberkahbandung.event.DonaturListener;
 import id.dapoerberkahbandung.event.KebutuhanListener;
-import id.dapoerberkahbandung.model.DonaturModel;
 import id.dapoerberkahbandung.model.KebutuhanModel;
-import id.dapoerberkahbandung.model.TabelDonaturModel;
 import id.dapoerberkahbandung.model.TabelKebutuhanModel;
-import id.dapoerberkahbandung.service.DonaturDao;
 import id.dapoerberkahbandung.service.KebutuhanDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -55,7 +48,7 @@ public class KebutuhanView extends javax.swing.JPanel implements KebutuhanListen
         controller.setModel(model);
         
         
-        model.resetDonatur();
+        model.resetKebutuhan();
     }
   
 

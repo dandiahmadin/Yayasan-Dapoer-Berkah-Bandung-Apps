@@ -105,9 +105,6 @@ public class KebutuhanModel {
         setId_kebutuhan(dao.autoGenerateId());
         setKebutuhan("");
         }
-
-    public void resetDonatur() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

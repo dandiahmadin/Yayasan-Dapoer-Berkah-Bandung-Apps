@@ -62,7 +62,7 @@ public class KebutuhanController {
 
         if (kebutuhan.trim().equals("")) {
             JOptionPane.showMessageDialog(view, "Kebutuhan Tidak Boleh Kosong!");
-        } else if (nama.length() > 50) {
+        } else if (kebutuhan.length() > 50) {
             JOptionPane.showMessageDialog(view, "kebutuhan Tidak Boleh Lebih Dari 50 Karakter!");
         } else {
             model.setId_kebutuhan(id_kebutuhan);
@@ -99,4 +99,4 @@ public class KebutuhanController {
         }
     }
 
-  }
+}
