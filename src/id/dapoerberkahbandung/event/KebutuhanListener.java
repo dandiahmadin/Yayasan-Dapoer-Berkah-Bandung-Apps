@@ -5,10 +5,17 @@
  */
 package id.dapoerberkahbandung.event;
 
+import id.dapoerberkahbandung.entity.Kebutuhan;
+import id.dapoerberkahbandung.model.KebutuhanModel;
+
 /**
  *
  * @author Alfi Nurizkya
  */
 public interface KebutuhanListener {
-    
+    public void onChange(KebutuhanModel kebutuhan);
+    public void onInsert(Kebutuhan kebutuhan);
+    public void onUpdate(Kebutuhan kebutuhan);
+    public void onDelete();
+
 }

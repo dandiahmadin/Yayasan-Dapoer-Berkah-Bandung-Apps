@@ -9,18 +9,21 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import id.dapoerberkahbandung.impl.AnggotaDaoImpl;
 import id.dapoerberkahbandung.impl.DonaturDaoImpl;
+import id.dapoerberkahbandung.impl.KebutuhanDaoImpl;
 import id.dapoerberkahbandung.service.AnggotaDao;
 import id.dapoerberkahbandung.service.DonaturDao;
+import id.dapoerberkahbandung.service.KebutuhanDao;
 import java.sql.SQLException;
 
 /**
  *
- * @author Dandi Ahmadin
+ * @author Alfi Nurizkya
  */
 public class Koneksi {
     private static Connection connection;
     private static AnggotaDao anggotaDao;
     private static DonaturDao donaturDao;
+    private static KebutuhanDao kebutuhandao;
     
     public static Connection getConnection() throws SQLException {
         if(connection == null) {
@@ -49,5 +52,12 @@ public class Koneksi {
         
         return donaturDao;
     }
-    
+     public static KebutuhanDao getKebutuhanDao() throws SQLException {
+        if (kebutuhandao == null) {
+            kebutuhandao = new KebutuhanDaoImpl(getConnection());
+        }
+        
+        return kebutuhandao;
+    }
+
 }

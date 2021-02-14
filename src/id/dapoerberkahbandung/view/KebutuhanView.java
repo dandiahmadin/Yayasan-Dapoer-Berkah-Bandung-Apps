@@ -5,18 +5,59 @@
  */
 package id.dapoerberkahbandung.view;
 
+import id.dapoerberkahbandung.controller.DonaturController;
+import id.dapoerberkahbandung.controller.KebutuhanController;
+import id.dapoerberkahbandung.database.Koneksi;
+import id.dapoerberkahbandung.entity.Donatur;
+import id.dapoerberkahbandung.entity.Kebutuhan;
+import id.dapoerberkahbandung.error.DonaturException;
+import id.dapoerberkahbandung.error.KebutuhanException;
+import id.dapoerberkahbandung.event.DonaturListener;
+import id.dapoerberkahbandung.event.KebutuhanListener;
+import id.dapoerberkahbandung.model.DonaturModel;
+import id.dapoerberkahbandung.model.KebutuhanModel;
+import id.dapoerberkahbandung.model.TabelDonaturModel;
+import id.dapoerberkahbandung.model.TabelKebutuhanModel;
+import id.dapoerberkahbandung.service.DonaturDao;
+import id.dapoerberkahbandung.service.KebutuhanDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author Alfi Nurizkya
  */
-public class KebutuhanView extends javax.swing.JPanel {
+public class KebutuhanView extends javax.swing.JPanel implements KebutuhanListener, ListSelectionListener {
 
     /**
-     * Creates new form KebutuhanView
+     * Creates new form DonaturView
      */
-    public KebutuhanView() {
+    
+    private TabelKebutuhanModel tabelKebutuhanModel;
+    private KebutuhanModel model;
+    private KebutuhanController controller;
+    
+    
+    public KebutuhanView() throws SQLException {
         initComponents();
+        tabelKebutuhanModel = new TabelKebutuhanModel();
+        model = new KebutuhanModel();
+        controller = new KebutuhanController();
+        
+        tabelKebutuhan.setModel(tabelKebutuhanModel);
+        tabelKebutuhan.getSelectionModel().addListSelectionListener(this);
+        model.setKebutuhanListener(this);
+        controller.setModel(model);
+        
+        
+        model.resetDonatur();
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,25 +221,25 @@ public class KebutuhanView extends javax.swing.JPanel {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         try {
-            controller.resetDonatur(this);
+            controller.resetKebutuhan(this);
         } catch (SQLException ex) {
-            Logger.getLogger(DonaturView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KebutuhanView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        controller.insertDonatur(this);
+        controller.insertKebutuhan(this);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-        controller.updateDonatur(this);
+        controller.updateKebutuhan(this);
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        controller.deleteAnggota(this);
+        controller.deleteKebutuhan(this);
     }//GEN-LAST:event_btnHapusActionPerformed
 
 
@@ -215,4 +256,45 @@ public class KebutuhanView extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdKebutuhan;
     private javax.swing.JTextField txtKebutuhan;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(KebutuhanModel kebutuhan) {
+        txtIdKebutuhan.setText(model.getId_kebutuhan());
+        txtKebutuhan.setText(model.getKebutuhan());
+       
+    }
+
+    @Override
+    public void onInsert(Kebutuhan kebutuhan) {
+        tabelKebutuhanModel.add(kebutuhan);
+    }
+
+    @Override
+    public void onUpdate(Kebutuhan kebutuhan) {
+        int index = tabelKebutuhan.getSelectedRow();
+        tabelKebutuhanModel.set(index, kebutuhan);
+    }
+
+    @Override
+    public void onDelete() {
+        int index = tabelKebutuhan.getSelectedRow();
+        tabelKebutuhanModel.remove(index);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        try {
+            Kebutuhan model = tabelKebutuhanModel.get(tabelKebutuhan.getSelectedRow());
+            txtIdKebutuhan.setText(model.getId_kebutuhan());
+            txtKebutuhan.setText(model.getKebutuhan());
+                        
+        } catch (IndexOutOfBoundsException ex) {
+        }
+    }
+    
+    public void loadDatabase() throws SQLException, KebutuhanException {
+        KebutuhanDao dao = Koneksi.getKebutuhanDao();
+        tabelKebutuhanModel.setList(dao.selectAllKebutuhan());
+    }
+
 }

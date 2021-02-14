@@ -12,14 +12,14 @@ package id.dapoerberkahbandung.error;
 public class KebutuhanException extends Exception {
 
     /**
-     * Creates a new instance of <code>KebutuhanException</code> without detail
+     * Creates a new instance of <code>DonaturException</code> without detail
      * message.
      */
     public KebutuhanException() {
     }
 
     /**
-     * Constructs an instance of <code>KebutuhanException</code> with the
+     * Constructs an instance of <code>DonaturException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.

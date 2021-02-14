@@ -5,10 +5,73 @@
  */
 package id.dapoerberkahbandung.entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author Alfi Nurizkya
  */
 public class Kebutuhan {
+    private String id_kebutuhan, kebutuhan;
+
+    public Kebutuhan() {
+    }
+
+    public Kebutuhan(String id_kebutuhan, String kebutuhan) {
+        this.id_kebutuhan = id_kebutuhan;
+        this.kebutuhan = kebutuhan;
+        
+    }
+    
+    public String getId_kebutuhan() {
+        return id_kebutuhan;
+    }
+
+    public void setId_kebutuhan(String id_kebutuhan) {
+        this.id_kebutuhan= id_kebutuhan;
+    }
+
+    public String getKebutuhan() {
+        return kebutuhan;
+    }
+
+    public void setKebutuhan(String kebutuhan) {
+        this.kebutuhan = kebutuhan;
+    }
+
+   
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id_kebutuhan);
+        hash = 37 * hash + Objects.hashCode(this.kebutuhan);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Kebutuhan other = (Kebutuhan) obj;
+        if (!Objects.equals(this.id_kebutuhan, other.id_kebutuhan)) {
+            return false;
+        }
+        if (!Objects.equals(this.kebutuhan, other.kebutuhan)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setKebutuhan(Kebutuhan kebutuhan) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
