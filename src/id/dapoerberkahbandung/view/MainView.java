@@ -35,35 +35,15 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         menuPanel = new javax.swing.JPanel();
-        try {
-            menuView = new id.dapoerberkahbandung.view.MenuView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        }
         mainPanel = new javax.swing.JPanel();
-        berandaView = new id.dapoerberkahbandung.view.BerandaView();
-        try {
-            anggotaView = new id.dapoerberkahbandung.view.AnggotaView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            donaturView = new id.dapoerberkahbandung.view.DonaturView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
         setResizable(false);
 
         menuPanel.setLayout(new java.awt.CardLayout());
-        menuPanel.add(menuView, "card2");
 
         mainPanel.setLayout(new java.awt.CardLayout());
-        mainPanel.add(berandaView, "card2");
-        mainPanel.add(anggotaView, "card4");
-        mainPanel.add(donaturView, "card4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,11 +105,7 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private id.dapoerberkahbandung.view.AnggotaView anggotaView;
-    private id.dapoerberkahbandung.view.BerandaView berandaView;
-    private id.dapoerberkahbandung.view.DonaturView donaturView;
     public static javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
-    private id.dapoerberkahbandung.view.MenuView menuView;
     // End of variables declaration//GEN-END:variables
 }
