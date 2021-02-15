@@ -45,6 +45,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         controller.setModel(model);
         tabelPemasukan.getSelectionModel().addListSelectionListener(this);
         tabelPemasukan.setModel(tabelPemasukanModel);
+        
+        model.resetPemasukan();
     }
 
     public JTextField getTxtIdAnggota() {
