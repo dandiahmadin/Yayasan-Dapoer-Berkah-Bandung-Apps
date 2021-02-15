@@ -9,6 +9,7 @@ import id.dapoerberkahbandung.error.AnggotaException;
 import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.KebutuhanException;
 import id.dapoerberkahbandung.error.PemasukanException;
+import id.dapoerberkahbandung.error.PengeluaranException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ public class MenuView extends javax.swing.JPanel {
     private DonaturView donaturView;
     private PemasukanView pemasukanView;
     private KebutuhanView kebutuhanView;
+    private PengeluaranView pengeluaranView;
     
     public MenuView() throws SQLException, PemasukanException {
         initComponents();
@@ -32,6 +34,7 @@ public class MenuView extends javax.swing.JPanel {
         donaturView = new DonaturView();
         pemasukanView = new PemasukanView();
         kebutuhanView = new KebutuhanView();
+        pengeluaranView = new PengeluaranView();
     }
     
 /**
@@ -75,6 +78,11 @@ public class MenuView extends javax.swing.JPanel {
 
         btnPengeluaran.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnPengeluaran.setText("Pengeluaran");
+        btnPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengeluaranActionPerformed(evt);
+            }
+        });
 
         btnAnggota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAnggota.setText("Anggota");
@@ -259,6 +267,26 @@ public class MenuView extends javax.swing.JPanel {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnKebutuhanActionPerformed
+
+    private void btnPengeluaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeluaranActionPerformed
+        // TODO add your handling code here:
+        // remove all
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        
+        // add 
+        MainView.mainPanel.add(pengeluaranView);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        try {    
+            pengeluaranView.loadDatabase();
+        } catch (SQLException | PengeluaranException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPengeluaranActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
