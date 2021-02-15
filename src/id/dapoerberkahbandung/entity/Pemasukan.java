@@ -13,17 +13,14 @@ import java.util.Objects;
  */
 public class Pemasukan {
     private int no_pemasukan;
-//    private String tanggal;
     private String id_donatur, id_anggota;
     private int rekening, uang_tunai;
-    private Anggota anggota;
-    private Donatur donatur;
+    
 
     public Pemasukan() {
     }
 
     public Pemasukan(String id_anggota, String id_donatur, int rekening, int uang_tunai) {
-//        this.tanggal = tanggal;
         this.id_anggota = id_anggota;
         this.id_donatur = id_donatur;
         this.rekening = rekening;
@@ -36,30 +33,6 @@ public class Pemasukan {
 
     public void setNo_pemasukan(int no_pemasukan) {
         this.no_pemasukan = no_pemasukan;
-    }
-
-    public Anggota getAnggota() {
-        return anggota;
-    }
-
-    public void setAnggota(Anggota anggota) {
-        this.anggota = anggota;
-    }
-
-//    public String getTanggal() {
-//        return tanggal;
-//    }
-//
-//    public void setTanggal(String tanggal) {
-//        this.tanggal = tanggal;
-//    }
-
-    public Donatur getDonatur() {
-        return donatur;
-    }
-
-    public void setDonatur(Donatur donatur) {
-        this.donatur = donatur;
     }
 
     public int getRekening() {
@@ -103,8 +76,6 @@ public class Pemasukan {
 //        hash = 47 * hash + Objects.hashCode(this.tanggal);
         hash = 47 * hash + Objects.hashCode(this.id_anggota);
         hash = 47 * hash + Objects.hashCode(this.id_donatur);
-        hash = 47 * hash + Objects.hashCode(this.anggota);
-        hash = 47 * hash + Objects.hashCode(this.donatur);
         hash = 47 * hash + Objects.hashCode(this.rekening);
         hash = 47 * hash + Objects.hashCode(this.uang_tunai);
         
@@ -124,15 +95,6 @@ public class Pemasukan {
         }
         final Pemasukan other = (Pemasukan) obj;
         if (!Objects.equals(this.no_pemasukan, other.no_pemasukan)) {
-            return false;
-        }
-//        if (!Objects.equals(this.tanggal, other.tanggal)) {
-//            return false;
-//        }
-        if (!Objects.equals(this.anggota, other.anggota)) {
-            return false;
-        }
-        if (!Objects.equals(this.donatur, other.donatur)) {
             return false;
         }
         if (!Objects.equals(this.rekening, other.rekening)) {
