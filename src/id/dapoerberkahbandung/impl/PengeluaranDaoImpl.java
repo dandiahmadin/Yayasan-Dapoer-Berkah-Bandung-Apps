@@ -24,8 +24,8 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
     
     private Connection connection;
 
-    private final String insertPengeluaran = "INSERT INTO pengeluaran (id_anggota, id_donatur, rekening, uang_tunai) VALUES (?, ?, ?, ?)";
-    private final String updatePengeluaran = "UPDATE pengeluaran SET id_anggota=?, id_donatur=?, rekening=?, uang_tunai=? WHERE no_pengeluaran=?";
+    private final String insertPengeluaran = "INSERT INTO pengeluaran (id_anggota, id_kebutuhan, rekening, uang_tunai) VALUES (?, ?, ?, ?)";
+    private final String updatePengeluaran = "UPDATE pengeluaran SET id_anggota=?, id_kebutuhan=?, rekening=?, uang_tunai=? WHERE no_pengeluaran=?";
     private final String deletePengeluaran = "DELETE FROM pengeluaran WHERE no_pengeluaran=?";
     private final String getPengeluaran = "SELECT * FROM pengeluaran WHERE no_pengeluaran=?";
     private final String selectAllPengeluaran = "SELECT * FROM pengeluaran";
