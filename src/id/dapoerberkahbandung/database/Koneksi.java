@@ -11,10 +11,12 @@ import id.dapoerberkahbandung.impl.AnggotaDaoImpl;
 import id.dapoerberkahbandung.impl.DonaturDaoImpl;
 import id.dapoerberkahbandung.impl.KebutuhanDaoImpl;
 import id.dapoerberkahbandung.impl.PemasukanDaoImpl;
+import id.dapoerberkahbandung.impl.PengeluaranDaoImpl;
 import id.dapoerberkahbandung.service.AnggotaDao;
 import id.dapoerberkahbandung.service.DonaturDao;
 import id.dapoerberkahbandung.service.KebutuhanDao;
 import id.dapoerberkahbandung.service.PemasukanDao;
+import id.dapoerberkahbandung.service.PengeluaranDao;
 import java.sql.SQLException;
 
 /**
@@ -27,6 +29,8 @@ public class Koneksi {
     private static DonaturDao donaturDao;
     private static KebutuhanDao kebutuhanDao;
     private static PemasukanDao pemasukanDao;
+    private static PengeluaranDao pengeluaranDao;
+    
     
     public static Connection getConnection() throws SQLException {
         if(connection == null) {
@@ -70,6 +74,14 @@ public class Koneksi {
         }
         
         return pemasukanDao;
+    }
+    
+    public static PengeluaranDao getPengeluaranDao() throws SQLException {
+        if (pengeluaranDao == null) {
+            pengeluaranDao = new PengeluaranDaoImpl(getConnection());
+        }
+        
+        return pengeluaranDao;
     }
 
 }
