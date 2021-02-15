@@ -5,14 +5,11 @@
  */
 package id.dapoerberkahbandung.main;
 
-
-import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.view.MainView;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-
 
 /**
  *
@@ -23,7 +20,7 @@ public class YayasanDapoerBerkahBandung {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, PemasukanException {
+    public static void main(String[] args) {
         // TODO code application logic here
         SwingUtilities.invokeLater(new Runnable() {
             @Override
