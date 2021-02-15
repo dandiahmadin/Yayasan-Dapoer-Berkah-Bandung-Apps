@@ -6,6 +6,7 @@
 package id.dapoerberkahbandung.main;
 
 
+import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.view.MainView;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ public class YayasanDapoerBerkahBandung {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, PemasukanException {
         // TODO code application logic here
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -36,7 +37,7 @@ public class YayasanDapoerBerkahBandung {
                 
             }
             
-        });
+        });   
     }
     
 }

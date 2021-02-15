@@ -5,7 +5,9 @@
  */
 package id.dapoerberkahbandung.service;
 
+import id.dapoerberkahbandung.entity.Anggota;
 import id.dapoerberkahbandung.entity.Pemasukan;
+import id.dapoerberkahbandung.error.AnggotaException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import java.util.List;
 
@@ -16,7 +18,8 @@ import java.util.List;
 public interface PemasukanDao {
     public void insertPemasukan(Pemasukan pemasukan) throws PemasukanException;
     public void updatePemasukan(Pemasukan pemasukan) throws PemasukanException;
-    public void deletePemasukan(String no_pemasukan) throws PemasukanException;
-    public Pemasukan getPemasukan(String no_pemasukan) throws PemasukanException;
+    public void deletePemasukan(int no_pemasukan) throws PemasukanException;
+    public Pemasukan getPemasukan(int no_pemasukan) throws PemasukanException;
     public List<Pemasukan> selectAllPemasukan() throws PemasukanException;
+    
 }

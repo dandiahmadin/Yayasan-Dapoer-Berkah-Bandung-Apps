@@ -34,11 +34,20 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        try {
+            menuView1 = new id.dapoerberkahbandung.view.MenuView();
+        } catch (java.sql.SQLException e1) {
+            e1.printStackTrace();
+        } catch (id.dapoerberkahbandung.error.PemasukanException e2) {
+            e2.printStackTrace();
+        }
         menuPanel = new javax.swing.JPanel();
         try {
             menuView = new id.dapoerberkahbandung.view.MenuView();
         } catch (java.sql.SQLException e1) {
             e1.printStackTrace();
+        } catch (id.dapoerberkahbandung.error.PemasukanException e2) {
+            e2.printStackTrace();
         }
         mainPanel = new javax.swing.JPanel();
         berandaView = new id.dapoerberkahbandung.view.BerandaView();
@@ -52,6 +61,11 @@ public class MainView extends javax.swing.JFrame {
         } catch (java.sql.SQLException e1) {
             e1.printStackTrace();
         }
+        try {
+            pemasukanView = new id.dapoerberkahbandung.view.PemasukanView();
+        } catch (id.dapoerberkahbandung.error.PemasukanException e1) {
+            e1.printStackTrace();
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
@@ -62,8 +76,9 @@ public class MainView extends javax.swing.JFrame {
 
         mainPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(berandaView, "card2");
-        mainPanel.add(anggotaView, "card4");
+        mainPanel.add(anggotaView, "card3");
         mainPanel.add(donaturView, "card4");
+        mainPanel.add(pemasukanView, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,5 +146,7 @@ public class MainView extends javax.swing.JFrame {
     public static javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
     private id.dapoerberkahbandung.view.MenuView menuView;
+    private id.dapoerberkahbandung.view.MenuView menuView1;
+    private id.dapoerberkahbandung.view.PemasukanView pemasukanView;
     // End of variables declaration//GEN-END:variables
 }

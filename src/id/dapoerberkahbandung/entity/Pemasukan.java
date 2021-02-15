@@ -5,9 +5,6 @@
  */
 package id.dapoerberkahbandung.entity;
 
-import id.dapoerberkahbandung.service.AnggotaDao;
-import id.dapoerberkahbandung.service.DonaturDao;
-import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -16,16 +13,19 @@ import java.util.Objects;
  */
 public class Pemasukan {
     private int no_pemasukan;
-    private Date tanggal;
+//    private String tanggal;
+    private String id_donatur, id_anggota;
+    private int rekening, uang_tunai;
     private Anggota anggota;
     private Donatur donatur;
-    private int rekening, uang_tunai;
 
     public Pemasukan() {
     }
 
-    public Pemasukan(Date tanggal, int rekening, int uang_tunai) {
-        this.tanggal = tanggal;
+    public Pemasukan(String id_anggota, String id_donatur, int rekening, int uang_tunai) {
+//        this.tanggal = tanggal;
+        this.id_anggota = id_anggota;
+        this.id_donatur = id_donatur;
         this.rekening = rekening;
         this.uang_tunai = uang_tunai;
     }
@@ -46,13 +46,13 @@ public class Pemasukan {
         this.anggota = anggota;
     }
 
-    public Date getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(Date tanggal) {
-        this.tanggal = tanggal;
-    }
+//    public String getTanggal() {
+//        return tanggal;
+//    }
+//
+//    public void setTanggal(String tanggal) {
+//        this.tanggal = tanggal;
+//    }
 
     public Donatur getDonatur() {
         return donatur;
@@ -70,24 +70,44 @@ public class Pemasukan {
         this.rekening = rekening;
     }
 
-    public int getTunai() {
+    public String getId_donatur() {
+        return id_donatur;
+    }
+
+    public void setId_donatur(String id_donatur) {
+        this.id_donatur = id_donatur;
+    }
+
+    public String getId_anggota() {
+        return id_anggota;
+    }
+
+    public void setId_anggota(String id_anggota) {
+        this.id_anggota = id_anggota;
+    }
+
+    public int getUang_tunai() {
         return uang_tunai;
     }
 
-    public void setTunai(int uang_tunai) {
+    public void setUang_tunai(int uang_tunai) {
         this.uang_tunai = uang_tunai;
     }
 
+    
     
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 47 * hash + Objects.hashCode(this.no_pemasukan);
-        hash = 47 * hash + Objects.hashCode(this.tanggal);
+//        hash = 47 * hash + Objects.hashCode(this.tanggal);
+        hash = 47 * hash + Objects.hashCode(this.id_anggota);
+        hash = 47 * hash + Objects.hashCode(this.id_donatur);
         hash = 47 * hash + Objects.hashCode(this.anggota);
         hash = 47 * hash + Objects.hashCode(this.donatur);
         hash = 47 * hash + Objects.hashCode(this.rekening);
         hash = 47 * hash + Objects.hashCode(this.uang_tunai);
+        
         return hash;
     }
 
@@ -106,9 +126,9 @@ public class Pemasukan {
         if (!Objects.equals(this.no_pemasukan, other.no_pemasukan)) {
             return false;
         }
-        if (!Objects.equals(this.tanggal, other.tanggal)) {
-            return false;
-        }
+//        if (!Objects.equals(this.tanggal, other.tanggal)) {
+//            return false;
+//        }
         if (!Objects.equals(this.anggota, other.anggota)) {
             return false;
         }
@@ -119,6 +139,12 @@ public class Pemasukan {
             return false;
         }
         if (!Objects.equals(this.uang_tunai, other.uang_tunai)) {
+            return false;
+        }
+        if (!Objects.equals(this.id_anggota, other.id_anggota)) {
+            return false;
+        }
+        if (!Objects.equals(this.id_donatur, other.id_donatur)) {
             return false;
         }
         return true;

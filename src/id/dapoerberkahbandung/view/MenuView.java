@@ -7,6 +7,8 @@ package id.dapoerberkahbandung.view;
 
 import id.dapoerberkahbandung.error.AnggotaException;
 import id.dapoerberkahbandung.error.DonaturException;
+import id.dapoerberkahbandung.error.KebutuhanException;
+import id.dapoerberkahbandung.error.PemasukanException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,14 +19,19 @@ import java.util.logging.Logger;
  */
 public class MenuView extends javax.swing.JPanel {
     
-    private AnggotaView berandaView;
+    private AnggotaView berandView;
     private AnggotaView anggotaView;
     private DonaturView donaturView;
+    private PemasukanView pemasukanView;
+    private KebutuhanView kebutuhanView;
     
-    public MenuView() throws SQLException {
+    public MenuView() throws SQLException, PemasukanException {
         initComponents();
+//        berandaView = new BerandaView();
         anggotaView = new AnggotaView();
         donaturView = new DonaturView();
+        pemasukanView = new PemasukanView();
+        kebutuhanView = new KebutuhanView();
     }
     
 /**
@@ -87,6 +94,11 @@ public class MenuView extends javax.swing.JPanel {
 
         btnKebutuhan.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnKebutuhan.setText("Kebutuhan");
+        btnKebutuhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKebutuhanActionPerformed(evt);
+            }
+        });
 
         Line2.setBackground(new java.awt.Color(255, 255, 255));
         Line2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
@@ -103,7 +115,7 @@ public class MenuView extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        icon.setIcon(new javax.swing.ImageIcon("D:\\UNIKOM\\Semester_III\\PBO\\DBB Logo_1 2.png")); // NOI18N
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/DBB Logo_1 2.png"))); // NOI18N
         icon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,6 +168,21 @@ public class MenuView extends javax.swing.JPanel {
 
     private void btnPemasukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemasukanActionPerformed
         // TODO add your handling code here:
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        
+        // add 
+        MainView.mainPanel.add(pemasukanView);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        try {    
+            pemasukanView.loadDatabase();
+        } catch (SQLException | PemasukanException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPemasukanActionPerformed
 
     private void btnAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnggotaActionPerformed
@@ -164,7 +191,6 @@ public class MenuView extends javax.swing.JPanel {
         MainView.mainPanel.removeAll();
         MainView.mainPanel.repaint();
         MainView.mainPanel.revalidate();
-        
         
         // add 
         MainView.mainPanel.add(anggotaView);
@@ -214,6 +240,25 @@ public class MenuView extends javax.swing.JPanel {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDonaturActionPerformed
+
+    private void btnKebutuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKebutuhanActionPerformed
+        // TODO add your handling code here:
+        MainView.mainPanel.removeAll();
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        
+        // add 
+        MainView.mainPanel.add(kebutuhanView);
+        MainView.mainPanel.repaint();
+        MainView.mainPanel.revalidate();
+        
+        try {    
+            kebutuhanView.loadDatabase();
+        } catch (SQLException | KebutuhanException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnKebutuhanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
