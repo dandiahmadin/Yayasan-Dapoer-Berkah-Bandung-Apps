@@ -66,19 +66,27 @@ public class MainView extends javax.swing.JFrame {
         } catch (id.dapoerberkahbandung.error.PemasukanException e1) {
             e1.printStackTrace();
         }
+        pengeluaranView = new id.dapoerberkahbandung.view.PengeluaranView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
         setResizable(false);
 
         menuPanel.setLayout(new java.awt.CardLayout());
+        menuPanel.add(menuView);
+        menuPanel.repaint();
+        menuPanel.revalidate();
         menuPanel.add(menuView, "card2");
 
         mainPanel.setLayout(new java.awt.CardLayout());
+        mainPanel.add(berandaView);
+        mainPanel.repaint();
+        mainPanel.revalidate();
         mainPanel.add(berandaView, "card2");
         mainPanel.add(anggotaView, "card3");
         mainPanel.add(donaturView, "card4");
         mainPanel.add(pemasukanView, "card5");
+        mainPanel.add(pengeluaranView, "card6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,5 +156,6 @@ public class MainView extends javax.swing.JFrame {
     private id.dapoerberkahbandung.view.MenuView menuView;
     private id.dapoerberkahbandung.view.MenuView menuView1;
     private id.dapoerberkahbandung.view.PemasukanView pemasukanView;
+    private id.dapoerberkahbandung.view.PengeluaranView pengeluaranView;
     // End of variables declaration//GEN-END:variables
 }
