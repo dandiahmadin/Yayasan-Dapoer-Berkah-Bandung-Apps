@@ -18,7 +18,6 @@ import java.sql.SQLException;
  */
 public class PemasukanModel {
     private int no_pemasukan, rekening, uang_tunai;
-    private String tanggal;
     private String id_anggota, id_donatur;
     private PemasukanListener listener;
 
@@ -54,15 +53,6 @@ public class PemasukanModel {
 
     public void setUang_tunai(int uang_tunai) {
         this.uang_tunai = uang_tunai;
-        fireOnChange();
-    }
-
-    public String getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
         fireOnChange();
     }
 
@@ -143,7 +133,6 @@ public class PemasukanModel {
     
     public void resetPemasukan() {
         setNo_pemasukan(0);
-        setTanggal("");
         setId_anggota("");
         setId_donatur("");
         setRekening(0);
