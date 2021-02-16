@@ -5,6 +5,7 @@
  */
 package id.dapoerberkahbandung.view;
 
+import com.toedter.calendar.JDateChooser;
 import id.dapoerberkahbandung.controller.PemasukanController;
 import id.dapoerberkahbandung.database.Koneksi;
 import id.dapoerberkahbandung.entity.Pemasukan;
@@ -47,6 +48,10 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         tabelPemasukan.setModel(tabelPemasukanModel);
         
         model.resetPemasukan();
+    }
+
+    public JDateChooser getDateChooser() {
+        return dateChooser;
     }
 
     public JTextField getTxtIdAnggota() {
@@ -101,6 +106,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         btnHapus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelPemasukan = new javax.swing.JTable();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        anggota1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,6 +155,10 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                 txtNoPemasukanActionPerformed(evt);
             }
         });
+
+        txtIdAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
+        txtIdDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
         txtRekening.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
@@ -199,6 +210,18 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         ));
         jScrollPane2.setViewportView(tabelPemasukan);
 
+        dateChooser.setDateFormatString("dd MMMM yyyy");
+        dateChooser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        dateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateChooserPropertyChange(evt);
+            }
+        });
+
+        anggota1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        anggota1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        anggota1.setText("Tanggal :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,11 +229,19 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
             .addComponent(dataPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(no_pemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(anggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNoPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(anggota, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
@@ -218,16 +249,12 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                             .addComponent(rekening, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtUangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(txtRekening, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdDonatur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdAnggota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(no_pemasukan)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNoPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtUangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addComponent(txtRekening, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtIdDonatur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnReset)
                                 .addGap(18, 18, 18)
@@ -236,7 +263,7 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                                 .addComponent(btnUbah)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnHapus)))))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,22 +275,25 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                     .addComponent(no_pemasukan)
                     .addComponent(txtNoPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(anggota)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtIdDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(donatur))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRekening, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rekening))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUangTunai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uangTunai))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(anggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anggota))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(donatur))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRekening, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rekening))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUangTunai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uangTunai))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReset)
@@ -271,7 +301,7 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -300,14 +330,20 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         controller.deletePemasukan(this);
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    private void dateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateChooserPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateChooserPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anggota;
+    private javax.swing.JLabel anggota1;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel dataPemasukan;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel donatur;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -326,6 +362,7 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     @Override
     public void onChange(PemasukanModel model) {
         txtNoPemasukan.setText(model.getNo_pemasukan() + "");
+        dateChooser.setDate(model.getTanggal());
         txtIdAnggota.setText(model.getId_anggota());
         txtIdDonatur.setText(model.getId_donatur());
         txtRekening.setText(String.valueOf(model.getRekening()));
@@ -354,6 +391,7 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         try {
             Pemasukan model = tabelPemasukanModel.get(tabelPemasukan.getSelectedRow());
             txtNoPemasukan.setText(model.getNo_pemasukan() + "");
+            dateChooser.setDate(model.getTanggal());
             txtIdAnggota.setText(model.getId_anggota());
             txtIdDonatur.setText(model.getId_donatur());
             txtRekening.setText(model.getRekening() + "");
