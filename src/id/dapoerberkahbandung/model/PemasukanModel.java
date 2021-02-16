@@ -11,6 +11,7 @@ import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.event.PemasukanListener;
 import id.dapoerberkahbandung.service.PemasukanDao;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -18,6 +19,7 @@ import java.sql.SQLException;
  */
 public class PemasukanModel {
     private int no_pemasukan, rekening, uang_tunai;
+    private Date tanggal;
     private String id_anggota, id_donatur;
     private PemasukanListener listener;
 
@@ -35,6 +37,15 @@ public class PemasukanModel {
 
     public void setNo_pemasukan(int no_pemasukan) {
         this.no_pemasukan = no_pemasukan;
+        fireOnChange();
+    }
+    
+    public Date getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
         fireOnChange();
     }
 
@@ -102,6 +113,7 @@ public class PemasukanModel {
         PemasukanDao dao = Koneksi.getPemasukanDao();
         
         Pemasukan pemasukan = new Pemasukan();
+        pemasukan.setTanggal(tanggal);
         pemasukan.setId_anggota(id_anggota);
         pemasukan.setId_donatur(id_donatur);
         pemasukan.setRekening(rekening);
@@ -115,6 +127,7 @@ public class PemasukanModel {
         PemasukanDao dao = Koneksi.getPemasukanDao();
         
         Pemasukan pemasukan = new Pemasukan();
+        pemasukan.setTanggal(tanggal);
         pemasukan.setId_anggota(id_anggota);
         pemasukan.setId_donatur(id_donatur);
         pemasukan.setRekening(rekening);
@@ -133,6 +146,7 @@ public class PemasukanModel {
     
     public void resetPemasukan() {
         setNo_pemasukan(0);
+        setTanggal(new Date());
         setId_anggota("");
         setId_donatur("");
         setRekening(0);
