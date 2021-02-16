@@ -6,6 +6,7 @@
 package id.dapoerberkahbandung.model;
 
 import id.dapoerberkahbandung.entity.Pengeluaran;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -29,17 +30,22 @@ public class TabelPengeluaranModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0 : return list.get(rowIndex).getNo_pengeluaran();
-            case 1 : return list.get(rowIndex).getId_anggota();
-            case 2 : return list.get(rowIndex).getId_kebutuhan();
-            case 3 : return list.get(rowIndex).getRekening();
-            case 4 : return list.get(rowIndex).getUang_tunai();
+            case 1 : {
+                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+                String tanggal = formatDate.format(list.get(rowIndex).getTanggal());
+                return tanggal;
+            }
+            case 2 : return list.get(rowIndex).getId_anggota();
+            case 3 : return list.get(rowIndex).getId_kebutuhan();
+            case 4 : return list.get(rowIndex).getRekening();
+            case 5 : return list.get(rowIndex).getUang_tunai();
             default : return null;
         }
     }
@@ -48,10 +54,11 @@ public class TabelPengeluaranModel extends AbstractTableModel {
     public String getColumnName(int column) {
         switch (column) {
             case 0 : return "Nomor Pengeluaran";
-            case 1 : return "ID Anggota";
-            case 2 : return "ID Kebutuhan";
-            case 3 : return "Rekening";
-            case 4 : return "Uang Tunai";
+            case 1 : return "Tanggal";
+            case 2 : return "ID Anggota";
+            case 3 : return "ID Kebutuhan";
+            case 4 : return "Rekening";
+            case 5 : return "Uang Tunai";
             default: return null;
         }
     }
