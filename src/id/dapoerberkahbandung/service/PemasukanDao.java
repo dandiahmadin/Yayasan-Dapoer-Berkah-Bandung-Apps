@@ -5,9 +5,7 @@
  */
 package id.dapoerberkahbandung.service;
 
-import id.dapoerberkahbandung.entity.Anggota;
 import id.dapoerberkahbandung.entity.Pemasukan;
-import id.dapoerberkahbandung.error.AnggotaException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import java.util.List;
 
