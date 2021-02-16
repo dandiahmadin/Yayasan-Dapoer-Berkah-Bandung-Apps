@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,11 @@ public class PemasukanDaoImpl implements PemasukanDao {
     
     private Connection connection;
 
-    private final String insertPemasukan = "INSERT INTO pemasukan (id_anggota, id_donatur, rekening, uang_tunai) VALUES (?, ?, ?, ?)"; 
-    private final String updatePemasukan = "UPDATE pemasukan SET id_anggota=?, id_donatur=?, rekening=?, uang_tunai=? WHERE no_pemasukan=?"; 
+    private final String insertPemasukan = "INSERT INTO pemasukan (tanggal, id_anggota, id_donatur, rekening, uang_tunai) VALUES (?, ?, ?, ?, ?)"; 
+    private final String updatePemasukan = "UPDATE pemasukan SET tanggal=?, id_anggota=?, id_donatur=?, rekening=?, uang_tunai=? WHERE no_pemasukan=?"; 
     private final String deletePemasukan = "DELETE FROM pemasukan WHERE no_pemasukan=?"; 
     private final String getNoPemasukan = "SELECT * FROM pemasukan WHERE no_pemasukan=?"; 
-    private final String selectAllPemasukan = "SELECT pemasukan.no_pemasukan, anggota.id_anggota, donatur.id_donatur, pemasukan.rekening, pemasukan.uang_tunai FROM pemasukan, anggota, donatur WHERE pemasukan.id_anggota=anggota.id_anggota AND pemasukan.id_donatur=donatur.id_donatur";
+    private final String selectAllPemasukan = "SELECT pemasukan.no_pemasukan, pemasukan.tanggal, anggota.id_anggota, donatur.id_donatur, pemasukan.rekening, pemasukan.uang_tunai FROM pemasukan, anggota, donatur WHERE pemasukan.id_anggota=anggota.id_anggota AND pemasukan.id_donatur=donatur.id_donatur ORDER BY no_pemasukan";
     
     public PemasukanDaoImpl(Connection connection) {
         this.connection = connection;
@@ -40,10 +41,12 @@ public class PemasukanDaoImpl implements PemasukanDao {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(insertPemasukan, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, pemasukan.getId_anggota());
-            statement.setString(2, pemasukan.getId_donatur());
-            statement.setInt(3, pemasukan.getRekening());
-            statement.setInt(4, pemasukan.getUang_tunai());
+            Date dateSQL = new Date(pemasukan.getTanggal().getTime());
+            statement.setDate(1, dateSQL);
+            statement.setString(2, pemasukan.getId_anggota());
+            statement.setString(3, pemasukan.getId_donatur());
+            statement.setInt(4, pemasukan.getRekening());
+            statement.setInt(5, pemasukan.getUang_tunai());
             statement.executeUpdate();
             
             ResultSet result = statement.getGeneratedKeys();
@@ -80,11 +83,13 @@ public class PemasukanDaoImpl implements PemasukanDao {
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(updatePemasukan);
-            statement.setString(1, pemasukan.getId_anggota());
-            statement.setString(2, pemasukan.getId_donatur());
-            statement.setInt(3, pemasukan.getRekening());
-            statement.setInt(4, pemasukan.getUang_tunai());
-            statement.setInt(5, pemasukan.getNo_pemasukan());
+            Date dateSQL = new Date(pemasukan.getTanggal().getTime());
+            statement.setDate(1, dateSQL);
+            statement.setString(2, pemasukan.getId_anggota());
+            statement.setString(3, pemasukan.getId_donatur());
+            statement.setInt(4, pemasukan.getRekening());
+            statement.setInt(5, pemasukan.getUang_tunai());
+            statement.setInt(6, pemasukan.getNo_pemasukan());
             statement.executeUpdate();
                      
             connection.commit();
@@ -156,6 +161,7 @@ public class PemasukanDaoImpl implements PemasukanDao {
             
             if(result.next()) {
                 pemasukan.setNo_pemasukan(result.getInt("no_pemasukan"));
+                pemasukan.setTanggal(result.getDate("tanggal"));
                 pemasukan.setId_anggota(result.getString("id_anggota"));
                 pemasukan.setId_donatur(result.getString("id_donatur"));
                 pemasukan.setRekening(result.getInt("rekening"));
@@ -201,10 +207,11 @@ public class PemasukanDaoImpl implements PemasukanDao {
             while (result.next()) {
                 pemasukan = new Pemasukan();
                 pemasukan.setNo_pemasukan(result.getInt(1));
-                pemasukan.setId_anggota(result.getString(2));
-                pemasukan.setId_donatur(result.getString(3));
-                pemasukan.setRekening(result.getInt(4));
-                pemasukan.setUang_tunai(result.getInt(5));
+                pemasukan.setTanggal(result.getDate(2));
+                pemasukan.setId_anggota(result.getString(3));
+                pemasukan.setId_donatur(result.getString(4));
+                pemasukan.setRekening(result.getInt(5));
+                pemasukan.setUang_tunai(result.getInt(6));
                 list.add(pemasukan);
             } 
             connection.commit();
