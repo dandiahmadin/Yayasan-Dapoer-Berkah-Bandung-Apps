@@ -5,6 +5,7 @@
  */
 package id.dapoerberkahbandung.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Objects;
  */
 public class Pemasukan {
     private int no_pemasukan;
+    private Date tanggal;
     private String id_donatur, id_anggota;
     private int rekening, uang_tunai;
     
@@ -20,7 +22,8 @@ public class Pemasukan {
     public Pemasukan() {
     }
 
-    public Pemasukan(String id_anggota, String id_donatur, int rekening, int uang_tunai) {
+    public Pemasukan(Date tanggal,String id_anggota, String id_donatur, int rekening, int uang_tunai) {
+        this.tanggal = tanggal;
         this.id_anggota = id_anggota;
         this.id_donatur = id_donatur;
         this.rekening = rekening;
@@ -41,6 +44,14 @@ public class Pemasukan {
 
     public void setRekening(int rekening) {
         this.rekening = rekening;
+    }
+   
+    public Date getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
     }
 
     public String getId_donatur() {
@@ -73,7 +84,7 @@ public class Pemasukan {
     public int hashCode() {
         int hash = 7;
         hash = 47 * hash + Objects.hashCode(this.no_pemasukan);
-//        hash = 47 * hash + Objects.hashCode(this.tanggal);
+        hash = 47 * hash + Objects.hashCode(this.tanggal);
         hash = 47 * hash + Objects.hashCode(this.id_anggota);
         hash = 47 * hash + Objects.hashCode(this.id_donatur);
         hash = 47 * hash + Objects.hashCode(this.rekening);
@@ -95,6 +106,9 @@ public class Pemasukan {
         }
         final Pemasukan other = (Pemasukan) obj;
         if (!Objects.equals(this.no_pemasukan, other.no_pemasukan)) {
+            return false;
+        }
+        if (!Objects.equals(this.tanggal, other.tanggal)) {
             return false;
         }
         if (!Objects.equals(this.rekening, other.rekening)) {
