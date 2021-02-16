@@ -78,18 +78,15 @@ public class Pemasukan {
         this.uang_tunai = uang_tunai;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.no_pemasukan);
-        hash = 47 * hash + Objects.hashCode(this.tanggal);
-        hash = 47 * hash + Objects.hashCode(this.id_anggota);
-        hash = 47 * hash + Objects.hashCode(this.id_donatur);
-        hash = 47 * hash + Objects.hashCode(this.rekening);
-        hash = 47 * hash + Objects.hashCode(this.uang_tunai);
-        
+        hash = 89 * hash + this.no_pemasukan;
+        hash = 89 * hash + Objects.hashCode(this.tanggal);
+        hash = 89 * hash + Objects.hashCode(this.id_donatur);
+        hash = 89 * hash + Objects.hashCode(this.id_anggota);
+        hash = 89 * hash + this.rekening;
+        hash = 89 * hash + this.uang_tunai;
         return hash;
     }
 
@@ -105,26 +102,26 @@ public class Pemasukan {
             return false;
         }
         final Pemasukan other = (Pemasukan) obj;
-        if (!Objects.equals(this.no_pemasukan, other.no_pemasukan)) {
+        if (this.no_pemasukan != other.no_pemasukan) {
             return false;
         }
-        if (!Objects.equals(this.tanggal, other.tanggal)) {
+        if (this.rekening != other.rekening) {
             return false;
         }
-        if (!Objects.equals(this.rekening, other.rekening)) {
-            return false;
-        }
-        if (!Objects.equals(this.uang_tunai, other.uang_tunai)) {
-            return false;
-        }
-        if (!Objects.equals(this.id_anggota, other.id_anggota)) {
+        if (this.uang_tunai != other.uang_tunai) {
             return false;
         }
         if (!Objects.equals(this.id_donatur, other.id_donatur)) {
             return false;
         }
+        if (!Objects.equals(this.id_anggota, other.id_anggota)) {
+            return false;
+        }
+        if (!Objects.equals(this.tanggal, other.tanggal)) {
+            return false;
+        }
         return true;
     }
-    
+
     
 }
