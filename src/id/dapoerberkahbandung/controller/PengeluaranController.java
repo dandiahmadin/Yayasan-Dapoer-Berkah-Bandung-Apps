@@ -7,6 +7,7 @@ package id.dapoerberkahbandung.controller;
 
 import id.dapoerberkahbandung.model.PengeluaranModel;
 import id.dapoerberkahbandung.view.PengeluaranView;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,25 +21,27 @@ public class PengeluaranController {
         this.model = model;
     }
    
-   public void resetPengeluaran(PengeluaranView view) {
+    public void resetPengeluaran(PengeluaranView view) {
        model.resetPengeluaran();
-   }
+    }
    
-   public void insertPengeluaran(PengeluaranView view) {
+    public void insertPengeluaran(PengeluaranView view) {
+        Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         String id_anggota = view.getTxtIdAnggota().getText();
         String id_kebutuhan = view.getTxtIdKebutuhan().getText();
         Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
         Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
-        
+       
         if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
+           JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
         } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
+           JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
         } else if (id_kebutuhan.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Kosong!");
+           JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Kosong!");
         } else if (id_kebutuhan.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Lebih dari 4 karakter!");
+           JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Lebih dari 4 karakter!");
         } else {
+            model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
             model.setId_kebutuhan(id_kebutuhan);
             model.setRekening(rekening);
@@ -61,6 +64,7 @@ public class PengeluaranController {
             return;
         }
         Integer no_pemasukan = Integer.parseInt(view.getTxtNoPengeluaran().getText());
+        Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         String id_anggota = view.getTxtIdAnggota().getText();
         String id_kebutuhan = view.getTxtIdKebutuhan().getText();
         Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
@@ -76,6 +80,7 @@ public class PengeluaranController {
             JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Lebih dari 4 karakter!");
         } else {
             model.setNo_pengeluaran(no_pemasukan);
+            model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
             model.setId_kebutuhan(id_kebutuhan);
             model.setRekening(rekening);
