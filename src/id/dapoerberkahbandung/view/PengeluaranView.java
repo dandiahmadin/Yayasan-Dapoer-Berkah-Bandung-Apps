@@ -5,6 +5,7 @@
  */
 package id.dapoerberkahbandung.view;
 
+import com.toedter.calendar.JDateChooser;
 import id.dapoerberkahbandung.controller.PengeluaranController;
 import id.dapoerberkahbandung.database.Koneksi;
 import id.dapoerberkahbandung.entity.Pengeluaran;
@@ -50,6 +51,10 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         return tabelPengeluaran;
     }
 
+    public JDateChooser getDateChooser() {
+        return dateChooser;
+    }
+    
     public JTextField getTxtIdAnggota() {
         return txtIdAnggota;
     }
@@ -85,6 +90,8 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         dataPengeluaran = new javax.swing.JLabel();
         idNoPengeluaran = new javax.swing.JLabel();
         txtNoPengeluaran = new javax.swing.JTextField();
+        idAnggota1 = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         idAnggota = new javax.swing.JLabel();
         txtIdAnggota = new javax.swing.JTextField();
         idKebutuhan = new javax.swing.JLabel();
@@ -117,10 +124,18 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
             }
         });
 
+        idAnggota1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        idAnggota1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idAnggota1.setText("Tanggal :");
+
+        dateChooser.setDateFormatString("dd MMM yyyy");
+        dateChooser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
         idAnggota.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idAnggota.setText("ID Anggota :");
 
+        txtIdAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         txtIdAnggota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdAnggotaActionPerformed(evt);
@@ -131,6 +146,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idKebutuhan.setText("ID Kebutuhan :");
 
+        txtIdKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         txtIdKebutuhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdKebutuhanActionPerformed(evt);
@@ -141,6 +157,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idRekening.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idRekening.setText("Rekening :");
 
+        txtRekening.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         txtRekening.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRekeningActionPerformed(evt);
@@ -151,6 +168,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idUangTunai.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idUangTunai.setText("Uang Tunai :");
 
+        txtUangTunai.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         txtUangTunai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUangTunaiActionPerformed(evt);
@@ -222,14 +240,11 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                             .addComponent(idRekening, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idNoPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(idNoPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idAnggota1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNoPengeluaran, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addComponent(txtRekening, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                 .addComponent(txtUangTunai))
                             .addGroup(layout.createSequentialGroup()
@@ -239,7 +254,12 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                                 .addGap(18, 18, 18)
                                 .addComponent(btnUbah)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnHapus)))
+                                .addComponent(btnHapus))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                .addComponent(txtIdAnggota, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNoPengeluaran, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -253,18 +273,22 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                     .addComponent(idNoPengeluaran)
                     .addComponent(txtNoPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idAnggota1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idAnggota)
                     .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idKebutuhan)
                     .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idRekening)
                     .addComponent(txtRekening, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idUangTunai)
                     .addComponent(txtUangTunai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,7 +299,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                     .addComponent(btnUbah)
                     .addComponent(btnHapus))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -327,7 +351,9 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
     private javax.swing.JLabel dataPengeluaran;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel idAnggota;
+    private javax.swing.JLabel idAnggota1;
     private javax.swing.JLabel idKebutuhan;
     private javax.swing.JLabel idNoPengeluaran;
     private javax.swing.JLabel idRekening;
@@ -344,6 +370,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     @Override
     public void onChange(PengeluaranModel model) {
         txtNoPengeluaran.setText(model.getNo_pengeluaran()+ "");
+        dateChooser.setDate(model.getTanggal());
         txtIdAnggota.setText(model.getId_anggota());
         txtIdKebutuhan.setText(model.getId_kebutuhan());
         txtRekening.setText(String.valueOf(model.getRekening()));
@@ -372,6 +399,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         try {
             Pengeluaran model = tabelPengeluaranModel.get(tabelPengeluaran.getSelectedRow());
             txtNoPengeluaran.setText(model.getNo_pengeluaran() + "");
+            dateChooser.setDate(model.getTanggal());
             txtIdAnggota.setText(model.getId_anggota());
             txtIdKebutuhan.setText(model.getId_kebutuhan());
             txtRekening.setText(model.getRekening()+ "");
