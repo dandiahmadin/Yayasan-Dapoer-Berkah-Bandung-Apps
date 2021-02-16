@@ -11,6 +11,7 @@ import id.dapoerberkahbandung.error.PengeluaranException;
 import id.dapoerberkahbandung.event.PengeluaranListener;
 import id.dapoerberkahbandung.service.PengeluaranDao;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -19,6 +20,7 @@ import java.sql.SQLException;
 public class PengeluaranModel {
     private int no_pengeluaran, rekening, uang_tunai;
     private String id_anggota, id_kebutuhan;
+    private Date tanggal;
     private PengeluaranListener listener;
 
     public void setListener(PengeluaranListener listener) {
@@ -38,6 +40,15 @@ public class PengeluaranModel {
         fireOnChange();
     }
 
+    public Date getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
+        fireOnChange();
+    }
+    
     public int getRekening() {
         return rekening;
     }
@@ -103,6 +114,7 @@ public class PengeluaranModel {
         
         Pengeluaran pengeluaran = new Pengeluaran();
         pengeluaran.setId_anggota(id_anggota);
+        pengeluaran.setTanggal(tanggal);
         pengeluaran.setId_kebutuhan(id_kebutuhan);
         pengeluaran.setRekening(rekening);
         pengeluaran.setUang_tunai(uang_tunai);
@@ -116,6 +128,7 @@ public class PengeluaranModel {
         
         Pengeluaran pengeluaran = new Pengeluaran();
         pengeluaran.setId_anggota(id_anggota);
+        pengeluaran.setTanggal(tanggal);
         pengeluaran.setId_kebutuhan(id_kebutuhan);
         pengeluaran.setRekening(rekening);
         pengeluaran.setUang_tunai(uang_tunai);
@@ -134,6 +147,7 @@ public class PengeluaranModel {
     
     public void resetPengeluaran() {
         setNo_pengeluaran(0);
+        setTanggal(new Date());
         setId_anggota("");
         setId_kebutuhan("");
         setRekening(0);
