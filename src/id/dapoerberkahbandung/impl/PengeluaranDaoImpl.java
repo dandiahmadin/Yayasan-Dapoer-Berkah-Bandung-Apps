@@ -9,6 +9,7 @@ import id.dapoerberkahbandung.entity.Pengeluaran;
 import id.dapoerberkahbandung.error.PengeluaranException;
 import id.dapoerberkahbandung.service.PengeluaranDao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,8 +25,8 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
     
     private Connection connection;
 
-    private final String insertPengeluaran = "INSERT INTO pengeluaran (id_anggota, id_kebutuhan, rekening, uang_tunai) VALUES (?, ?, ?, ?)";
-    private final String updatePengeluaran = "UPDATE pengeluaran SET id_anggota=?, id_kebutuhan=?, rekening=?, uang_tunai=? WHERE no_pengeluaran=?";
+    private final String insertPengeluaran = "INSERT INTO pengeluaran (tanggal, id_anggota, id_kebutuhan, rekening, uang_tunai) VALUES (?, ?, ?, ?, ?)";
+    private final String updatePengeluaran = "UPDATE pengeluaran SET tanggal=?, id_anggota=?, id_kebutuhan=?, rekening=?, uang_tunai=? WHERE no_pengeluaran=?";
     private final String deletePengeluaran = "DELETE FROM pengeluaran WHERE no_pengeluaran=?";
     private final String getPengeluaran = "SELECT * FROM pengeluaran WHERE no_pengeluaran=?";
     private final String selectAllPengeluaran = "SELECT * FROM pengeluaran";
@@ -41,11 +42,12 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(insertPengeluaran, Statement.RETURN_GENERATED_KEYS);
-            
-            statement.setString(1, pengeluaran.getId_anggota());
-            statement.setString(2, pengeluaran.getId_kebutuhan());
-            statement.setInt(3, pengeluaran.getRekening());
-            statement.setInt(4, pengeluaran.getUang_tunai());
+            Date dateSQL = new Date(pengeluaran.getTanggal().getTime());
+            statement.setDate(1, dateSQL);
+            statement.setString(2, pengeluaran.getId_anggota());
+            statement.setString(3, pengeluaran.getId_kebutuhan());
+            statement.setInt(4, pengeluaran.getRekening());
+            statement.setInt(5, pengeluaran.getUang_tunai());
             
             statement.executeUpdate();
             
@@ -84,12 +86,13 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(updatePengeluaran);
-            
-            statement.setString(1, pengeluaran.getId_anggota());
-            statement.setString(2, pengeluaran.getId_kebutuhan());
-            statement.setInt(3, pengeluaran.getRekening());
-            statement.setInt(4, pengeluaran.getUang_tunai());
-            statement.setInt(5, pengeluaran.getNo_pengeluaran());
+            Date dateSQL = new Date(pengeluaran.getTanggal().getTime());
+            statement.setDate(1, dateSQL);
+            statement.setString(2, pengeluaran.getId_anggota());
+            statement.setString(3, pengeluaran.getId_kebutuhan());
+            statement.setInt(4, pengeluaran.getRekening());
+            statement.setInt(5, pengeluaran.getUang_tunai());
+            statement.setInt(6, pengeluaran.getNo_pengeluaran());
             statement.executeUpdate();
             
             connection.commit();
@@ -158,6 +161,7 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
             
             if(result.next()) {
                 pengeluaran.setNo_pengeluaran(result.getInt("no_pengeluaran"));
+                pengeluaran.setTanggal(result.getDate("tanggal"));
                 pengeluaran.setId_anggota(result.getString("id_anggota"));
                 pengeluaran.setId_kebutuhan(result.getString("id_kebutuhan"));
                 pengeluaran.setRekening(result.getInt("rekening"));
@@ -202,10 +206,11 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
             while (result.next()) {
                 pengeluaran = new Pengeluaran();
                 pengeluaran.setNo_pengeluaran(result.getInt(1));
-                pengeluaran.setId_anggota(result.getString(2));
-                pengeluaran.setId_kebutuhan(result.getString(3));
-                pengeluaran.setRekening(result.getInt(4));
-                pengeluaran.setUang_tunai(result.getInt(5));
+                pengeluaran.setTanggal(result.getDate(2));
+                pengeluaran.setId_anggota(result.getString(3));
+                pengeluaran.setId_kebutuhan(result.getString(4));
+                pengeluaran.setRekening(result.getInt(5));
+                pengeluaran.setUang_tunai(result.getInt(6));
                 list.add(pengeluaran);
             } 
             connection.commit();
