@@ -6,7 +6,7 @@
 package id.dapoerberkahbandung.model;
 
 import id.dapoerberkahbandung.entity.Pemasukan;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -30,26 +30,22 @@ public class TabelPemasukanModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-//        Date tanggal = null;
         switch (columnIndex) {
             case 0 : return list.get(rowIndex).getNo_pemasukan();
-//            case 1 : {
-//                try {
-//                    tanggal = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(list.get(rowIndex).getTanggal());
-//                } catch (ParseException ex) {
-//                    Logger.getLogger(TabelPemasukanModel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                return tanggal;
-//            }
-            case 1 : return list.get(rowIndex).getId_anggota();
-            case 2 : return list.get(rowIndex).getId_donatur();
-            case 3 : return list.get(rowIndex).getRekening();
-            case 4 : return list.get(rowIndex).getUang_tunai();
+            case 1 : {
+                SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+                String tgl = formatDate.format(list.get(rowIndex).getTanggal());
+                return tgl;
+            }
+            case 2 : return list.get(rowIndex).getId_anggota();
+            case 3 : return list.get(rowIndex).getId_donatur();
+            case 4 : return list.get(rowIndex).getRekening();
+            case 5 : return list.get(rowIndex).getUang_tunai();
             default: return null;
         }
     }
@@ -59,11 +55,11 @@ public class TabelPemasukanModel extends AbstractTableModel {
         //To change body of generated methods, choose Tools | Templates.
         switch (column) {
             case 0 : return "Nomor Pemasukan";
-//            case 1 : return "Tanggal";
-            case 1 : return "ID Anggota";
-            case 2 : return "ID Donatur";
-            case 3 : return "Rekening";
-            case 4 : return "Uang Tunai";
+            case 1 : return "Tanggal";
+            case 2 : return "ID Anggota";
+            case 3 : return "ID Donatur";
+            case 4 : return "Rekening";
+            case 5 : return "Uang Tunai";
             default: return null;
         }
     }
