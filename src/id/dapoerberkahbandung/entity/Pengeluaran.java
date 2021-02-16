@@ -6,6 +6,7 @@
 package id.dapoerberkahbandung.entity;
 
 import java.util.Objects;
+import java.util.Date;
 
 /**
  *
@@ -14,12 +15,13 @@ import java.util.Objects;
 public class Pengeluaran {
     private int no_pengeluaran, rekening, uang_tunai;
     private String id_anggota, id_kebutuhan;
+    private Date tanggal;
 
     public Pengeluaran() {
     }
 
-    public Pengeluaran(int no_pengeluaran, int rekening, int uang_tunai, String id_anggota, String id_kebutuhan) {
-        this.no_pengeluaran = no_pengeluaran;
+    public Pengeluaran(Date Tanggal, int rekening, int uang_tunai, String id_anggota, String id_kebutuhan) {
+        this.tanggal = tanggal;
         this.rekening = rekening;
         this.uang_tunai = uang_tunai;
         this.id_anggota = id_anggota;
@@ -34,6 +36,14 @@ public class Pengeluaran {
         this.no_pengeluaran = no_pengeluaran;
     }
 
+    public Date getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
+    }
+    
     public int getRekening() {
         return rekening;
     }
@@ -69,11 +79,12 @@ public class Pengeluaran {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.no_pengeluaran;
-        hash = 47 * hash + this.rekening;
-        hash = 47 * hash + this.uang_tunai;
-        hash = 47 * hash + Objects.hashCode(this.id_anggota);
-        hash = 47 * hash + Objects.hashCode(this.id_kebutuhan);
+        hash = 61 * hash + this.no_pengeluaran;
+        hash = 61 * hash + this.rekening;
+        hash = 61 * hash + this.uang_tunai;
+        hash = 61 * hash + Objects.hashCode(this.id_anggota);
+        hash = 61 * hash + Objects.hashCode(this.id_kebutuhan);
+        hash = 61 * hash + Objects.hashCode(this.tanggal);
         return hash;
     }
 
@@ -104,8 +115,13 @@ public class Pengeluaran {
         if (!Objects.equals(this.id_kebutuhan, other.id_kebutuhan)) {
             return false;
         }
+        if (!Objects.equals(this.tanggal, other.tanggal)) {
+            return false;
+        }
         return true;
     }
+
+    
     
     
 }
