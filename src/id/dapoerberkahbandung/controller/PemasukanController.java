@@ -8,6 +8,7 @@ package id.dapoerberkahbandung.controller;
 import id.dapoerberkahbandung.model.PemasukanModel;
 import id.dapoerberkahbandung.view.PemasukanView;
 import javax.swing.JOptionPane;
+import java.sql.Date;
 
 /**
  *
@@ -25,6 +26,7 @@ public class PemasukanController {
     }
     
     public void insertPemasukan(PemasukanView view) {
+        Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         String id_anggota = view.getTxtIdAnggota().getText();
         String id_donatur = view.getTxtIdDonatur().getText();
         Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
@@ -39,6 +41,7 @@ public class PemasukanController {
         } else if (id_donatur.length() > 4) {
             JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Lebih dari 4 karakter!");
         } else {
+            model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
             model.setId_donatur(id_donatur);
             model.setRekening(rekening);
@@ -60,6 +63,7 @@ public class PemasukanController {
             JOptionPane.showMessageDialog(view, "Silakan pilih baris yang akan diubah!");
             return;
         }
+        Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         Integer no_pemasukan = Integer.parseInt(view.getTxtNoPemasukan().getText());
         String id_anggota = view.getTxtIdAnggota().getText();
         String id_donatur = view.getTxtIdDonatur().getText();
@@ -76,6 +80,7 @@ public class PemasukanController {
             JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Lebih dari 4 karakter!");
         } else {
             model.setNo_pemasukan(no_pemasukan);
+            model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
             model.setId_donatur(id_donatur);
             model.setRekening(rekening);
