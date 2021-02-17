@@ -8,13 +8,21 @@ package id.dapoerberkahbandung.view;
 import com.toedter.calendar.JDateChooser;
 import id.dapoerberkahbandung.controller.PemasukanController;
 import id.dapoerberkahbandung.database.Koneksi;
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Donatur;
 import id.dapoerberkahbandung.entity.Pemasukan;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.event.PemasukanListener;
 import id.dapoerberkahbandung.model.PemasukanModel;
 import id.dapoerberkahbandung.model.TabelPemasukanModel;
 import id.dapoerberkahbandung.service.PemasukanDao;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -53,15 +61,14 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     public JDateChooser getDateChooser() {
         return dateChooser;
     }
-
-    public JTextField getTxtIdAnggota() {
-        return txtIdAnggota;
+    public JComboBox<String> getComboBoxAnggota() {
+        return comboBoxAnggota;
     }
-
-    public JTextField getTxtIdDonatur() {
-        return txtIdDonatur;
+    
+    public JComboBox<String> getComboBoxDonatur() {
+        return comboBoxDonatur;
     }
-
+    
     public JTable getTabelPemasukan() {
         return tabelPemasukan;
     }
@@ -77,6 +84,7 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     public JTextField getTxtUangTunai() {
         return txtUangTunai;
     }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,8 +104,6 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         rekening = new javax.swing.JLabel();
         uangTunai = new javax.swing.JLabel();
         txtNoPemasukan = new javax.swing.JTextField();
-        txtIdAnggota = new javax.swing.JTextField();
-        txtIdDonatur = new javax.swing.JTextField();
         txtRekening = new javax.swing.JTextField();
         txtUangTunai = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
@@ -108,6 +114,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         tabelPemasukan = new javax.swing.JTable();
         dateChooser = new com.toedter.calendar.JDateChooser();
         anggota1 = new javax.swing.JLabel();
+        comboBoxAnggota = new javax.swing.JComboBox<>();
+        comboBoxDonatur = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,11 +142,11 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
 
         anggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         anggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        anggota.setText("ID Anggota :");
+        anggota.setText("Nama Anggota :");
 
         donatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         donatur.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        donatur.setText("ID Donatur :");
+        donatur.setText("Nama Donatur :");
 
         rekening.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         rekening.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -155,10 +163,6 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                 txtNoPemasukanActionPerformed(evt);
             }
         });
-
-        txtIdAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-
-        txtIdDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
         txtRekening.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
@@ -222,48 +226,56 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         anggota1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         anggota1.setText("Tanggal :");
 
+        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboBoxDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxDonatur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(dataPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(no_pemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(anggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNoPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(anggota, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                            .addComponent(donatur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rekening, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(uangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtUangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addComponent(txtRekening, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtIdDonatur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnReset)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(no_pemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(anggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnTambah)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNoPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(anggota, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                    .addComponent(donatur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rekening, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(uangTunai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnUbah)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnHapus)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnReset)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnTambah)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnUbah)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnHapus))
+                                    .addComponent(comboBoxAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtUangTunai, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtRekening, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(comboBoxDonatur, javax.swing.GroupLayout.Alignment.LEADING, 0, 145, Short.MAX_VALUE)))))
+                        .addGap(0, 75, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,12 +292,12 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                     .addComponent(anggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anggota))
+                    .addComponent(anggota)
+                    .addComponent(comboBoxAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(donatur))
+                    .addComponent(donatur)
+                    .addComponent(comboBoxDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRekening, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,6 +325,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         controller.resetPemasukan(this);
+        comboBoxAnggota.setSelectedIndex(0);
+        comboBoxDonatur.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -342,6 +356,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JComboBox<String> comboBoxAnggota;
+    private javax.swing.JComboBox<String> comboBoxDonatur;
     private javax.swing.JLabel dataPemasukan;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel donatur;
@@ -351,8 +367,6 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     private javax.swing.JLabel no_pemasukan;
     private javax.swing.JLabel rekening;
     private javax.swing.JTable tabelPemasukan;
-    private javax.swing.JTextField txtIdAnggota;
-    private javax.swing.JTextField txtIdDonatur;
     private javax.swing.JTextField txtNoPemasukan;
     private javax.swing.JTextField txtRekening;
     private javax.swing.JTextField txtUangTunai;
@@ -363,8 +377,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     public void onChange(PemasukanModel model) {
         txtNoPemasukan.setText(model.getNo_pemasukan() + "");
         dateChooser.setDate(model.getTanggal());
-        txtIdAnggota.setText(model.getId_anggota());
-        txtIdDonatur.setText(model.getId_donatur());
+        comboBoxAnggota.setSelectedItem(model.getId_anggota());
+        comboBoxDonatur.setSelectedItem(model.getId_donatur());
         txtRekening.setText(String.valueOf(model.getRekening()));
         txtUangTunai.setText(String.valueOf(model.getUang_tunai()));
     }
@@ -372,18 +386,33 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
     @Override
     public void onInsert(Pemasukan pemasukan) {
         tabelPemasukanModel.add(pemasukan);
+        try {
+            loadDatabase();
+        } catch (SQLException | PemasukanException | AnggotaException | DonaturException ex) {
+            Logger.getLogger(PemasukanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void onUpdate(Pemasukan pemasukan) {
         int index = tabelPemasukan.getSelectedRow();
         tabelPemasukanModel.set(index, pemasukan);
+        try {
+            loadDatabase();
+        } catch (SQLException | PemasukanException | AnggotaException | DonaturException ex) {
+            Logger.getLogger(PemasukanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void onDelete() {
         int index = tabelPemasukan.getSelectedRow();
         tabelPemasukanModel.remove(index);
+        try {
+            loadDatabase();
+        } catch (SQLException | PemasukanException | AnggotaException | DonaturException ex) {
+            Logger.getLogger(PemasukanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -392,17 +421,31 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
             Pemasukan model = tabelPemasukanModel.get(tabelPemasukan.getSelectedRow());
             txtNoPemasukan.setText(model.getNo_pemasukan() + "");
             dateChooser.setDate(model.getTanggal());
-            txtIdAnggota.setText(model.getId_anggota());
-            txtIdDonatur.setText(model.getId_donatur());
+            comboBoxAnggota.setSelectedItem(model.getId_anggota());
+            comboBoxDonatur.setSelectedItem(model.getId_donatur());
             txtRekening.setText(model.getRekening() + "");
             txtUangTunai.setText(model.getUang_tunai() + "");
         } catch (IndexOutOfBoundsException exception) {
         }
     }
     
-    public void loadDatabase() throws SQLException, PemasukanException {
+    public void loadDatabase() throws SQLException, PemasukanException, AnggotaException, DonaturException {
         PemasukanDao dao = Koneksi.getPemasukanDao();
         tabelPemasukanModel.setList(dao.selectAllPemasukan());
+        comboBoxAnggota.removeAllItems();
+        comboBoxDonatur.removeAllItems();
         
+        comboBoxAnggota.addItem("~ Pilih ~");
+        comboBoxDonatur.addItem("~ Pilih ~");
+        
+        List<Anggota> id_anggota = dao.selectNameAnggota();
+        for (Anggota id : id_anggota) {
+            comboBoxAnggota.addItem(String.valueOf(id.getNama()));
+        }
+        
+        List<Donatur> id_donatur = dao.selectNameDonatur();
+        for (Donatur id : id_donatur) {
+            comboBoxDonatur.addItem(String.valueOf(id.getNama()));
+        }
     }
 }
