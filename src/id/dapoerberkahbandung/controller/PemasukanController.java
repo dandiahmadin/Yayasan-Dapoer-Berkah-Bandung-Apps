@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package id.dapoerberkahbandung.controller;
-
 import id.dapoerberkahbandung.model.PemasukanModel;
 import id.dapoerberkahbandung.view.PemasukanView;
 import javax.swing.JOptionPane;
@@ -27,19 +26,17 @@ public class PemasukanController {
     
     public void insertPemasukan(PemasukanView view) {
         Date tanggal = new Date(view.getDateChooser().getDate().getTime());
-        String id_anggota = view.getTxtIdAnggota().getText();
-        String id_donatur = view.getTxtIdDonatur().getText();
+        String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
+        String id_donatur = view.getComboBoxDonatur().getSelectedItem().toString();
         Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
         Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
         
-        if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
-        } else if (id_donatur.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Kosong!");
-        } else if (id_donatur.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Lebih dari 4 karakter!");
+        if (id_anggota.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");
+        } else if (id_donatur.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Donatur Tidak Boleh Kosong!");
+        } else if (rekening == 0 && uang_tunai == 0){
+            JOptionPane.showMessageDialog(view, "Rekening atau Uang Tunai Tidak Boleh Kosong!");
         } else {
             model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
@@ -65,19 +62,17 @@ public class PemasukanController {
         }
         Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         Integer no_pemasukan = Integer.parseInt(view.getTxtNoPemasukan().getText());
-        String id_anggota = view.getTxtIdAnggota().getText();
-        String id_donatur = view.getTxtIdDonatur().getText();
+        String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
+        String id_donatur = view.getComboBoxDonatur().getSelectedItem().toString();
         Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
         Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
         
-        if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
-        } else if (id_donatur.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Kosong!");
-        } else if (id_donatur.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Donatur Tidak Boleh Lebih dari 4 karakter!");
+        if (id_anggota.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");
+        } else if (id_donatur.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Donatur Tidak Boleh Kosong!");
+        } else if (rekening == 0 && uang_tunai == 0){
+            JOptionPane.showMessageDialog(view, "Rekening atau Uang Tunai Tidak Boleh Kosong!");
         } else {
             model.setNo_pemasukan(no_pemasukan);
             model.setTanggal(tanggal);
