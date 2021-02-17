@@ -54,10 +54,10 @@ public class TabelPemasukanModel extends AbstractTableModel {
     public String getColumnName(int column) {
         //To change body of generated methods, choose Tools | Templates.
         switch (column) {
-            case 0 : return "Nomor Pemasukan";
+            case 0 : return "Nomor";
             case 1 : return "Tanggal";
-            case 2 : return "ID Anggota";
-            case 3 : return "ID Donatur";
+            case 2 : return "Anggota";
+            case 3 : return "Donatur";
             case 4 : return "Rekening";
             case 5 : return "Uang Tunai";
             default: return null;
