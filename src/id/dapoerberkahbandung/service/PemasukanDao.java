@@ -5,7 +5,11 @@
  */
 package id.dapoerberkahbandung.service;
 
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Donatur;
 import id.dapoerberkahbandung.entity.Pemasukan;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import java.util.List;
 
@@ -19,5 +23,8 @@ public interface PemasukanDao {
     public void deletePemasukan(int no_pemasukan) throws PemasukanException;
     public Pemasukan getPemasukan(int no_pemasukan) throws PemasukanException;
     public List<Pemasukan> selectAllPemasukan() throws PemasukanException;
-    
+    public List<Anggota> selectNameAnggota() throws AnggotaException;
+    public List<Donatur> selectNameDonatur() throws DonaturException;
+    public Anggota getIdAnggota(String nama) throws AnggotaException;
+    public Donatur getIdDonatur(String nama) throws DonaturException;
 }
