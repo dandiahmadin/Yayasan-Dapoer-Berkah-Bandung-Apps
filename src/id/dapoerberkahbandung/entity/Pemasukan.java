@@ -17,12 +17,12 @@ public class Pemasukan {
     private Date tanggal;
     private String id_donatur, id_anggota;
     private int rekening, uang_tunai;
-    
 
+    
     public Pemasukan() {
     }
 
-    public Pemasukan(Date tanggal,String id_anggota, String id_donatur, int rekening, int uang_tunai) {
+    public Pemasukan(Date tanggal, String id_anggota, String id_donatur, int rekening, int uang_tunai) {
         this.tanggal = tanggal;
         this.id_anggota = id_anggota;
         this.id_donatur = id_donatur;
@@ -69,7 +69,7 @@ public class Pemasukan {
     public void setId_anggota(String id_anggota) {
         this.id_anggota = id_anggota;
     }
-
+   
     public int getUang_tunai() {
         return uang_tunai;
     }
