@@ -20,7 +20,7 @@ public class Pengeluaran {
     public Pengeluaran() {
     }
 
-    public Pengeluaran(Date Tanggal, int rekening, int uang_tunai, String id_anggota, String id_kebutuhan) {
+    public Pengeluaran(Date tanggal, int rekening, int uang_tunai, String id_anggota, String id_kebutuhan) {
         this.tanggal = tanggal;
         this.rekening = rekening;
         this.uang_tunai = uang_tunai;
