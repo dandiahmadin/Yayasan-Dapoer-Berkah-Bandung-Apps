@@ -5,7 +5,11 @@
  */
 package id.dapoerberkahbandung.impl;
 
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Donatur;
 import id.dapoerberkahbandung.entity.Pemasukan;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.service.PemasukanDao;
 import java.sql.Connection;
@@ -29,7 +33,11 @@ public class PemasukanDaoImpl implements PemasukanDao {
     private final String updatePemasukan = "UPDATE pemasukan SET tanggal=?, id_anggota=?, id_donatur=?, rekening=?, uang_tunai=? WHERE no_pemasukan=?"; 
     private final String deletePemasukan = "DELETE FROM pemasukan WHERE no_pemasukan=?"; 
     private final String getNoPemasukan = "SELECT * FROM pemasukan WHERE no_pemasukan=?"; 
-    private final String selectAllPemasukan = "SELECT pemasukan.no_pemasukan, pemasukan.tanggal, anggota.id_anggota, donatur.id_donatur, pemasukan.rekening, pemasukan.uang_tunai FROM pemasukan, anggota, donatur WHERE pemasukan.id_anggota=anggota.id_anggota AND pemasukan.id_donatur=donatur.id_donatur ORDER BY no_pemasukan";
+    private final String selectAllPemasukan = "SELECT pemasukan.no_pemasukan, pemasukan.tanggal, anggota.nama, donatur.nama, pemasukan.rekening, pemasukan.uang_tunai FROM pemasukan, anggota, donatur WHERE pemasukan.id_anggota=anggota.id_anggota AND pemasukan.id_donatur=donatur.id_donatur ORDER BY no_pemasukan";
+    private final String selectNameAnggota = "SELECT nama FROM anggota ORDER BY nama";
+    private final String getIdAnggota = "SELECT id_anggota FROM anggota WHERE nama=?";
+    private final String selectNameDonatur = "SELECT nama FROM donatur ORDER BY nama";
+    private final String getIdDonatur = "SELECT id_donatur FROM donatur WHERE nama=?";
     
     public PemasukanDaoImpl(Connection connection) {
         this.connection = connection;
@@ -236,4 +244,160 @@ public class PemasukanDaoImpl implements PemasukanDao {
             }
         }
     }
+    
+    @Override
+    public List<Anggota> selectNameAnggota() throws AnggotaException{
+        Statement statement = null;
+        List<Anggota> list = new ArrayList<Anggota>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(selectNameAnggota);
+            Anggota anggota = null;
+            while (result.next()) {
+                anggota = new Anggota();
+                anggota.setNama(result.getString("nama"));
+                list.add(anggota);
+            } 
+            connection.commit();
+            return list;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new AnggotaException(e.getMessage());
+            
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }    
+    
+    @Override
+    public Anggota getIdAnggota(String nama) throws AnggotaException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getIdAnggota);
+            statement.setString(1, nama);
+            
+            ResultSet result = statement.executeQuery();
+            
+            Anggota anggota = null;
+            if(result.next()) {
+                anggota = new Anggota();
+                anggota.setId_anggota(result.getString("id_anggota"));
+            } else {
+                throw new AnggotaException("Anggota dengan nama : " + nama + " tidak dapat ditemukan!");
+            }
+            connection.commit();
+            return anggota;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new AnggotaException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<Donatur> selectNameDonatur() throws DonaturException {
+        Statement statement = null;
+        List<Donatur> list = new ArrayList<Donatur>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(selectNameDonatur);
+            Donatur donatur = null;
+            while (result.next()) {
+                donatur = new Donatur();
+                donatur.setNama(result.getString("nama"));
+                list.add(donatur);
+            } 
+            connection.commit();
+            return list;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new DonaturException(e.getMessage());
+            
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+    
+    @Override
+    public Donatur getIdDonatur(String nama) throws DonaturException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getIdDonatur);
+            statement.setString(1, nama);
+            
+            ResultSet result = statement.executeQuery();
+            
+            Donatur donatur = null;
+            if(result.next()) {
+                donatur = new Donatur();
+                donatur.setId_donatur(result.getString("id_donatur"));
+            } else {
+                throw new DonaturException("Donatur dengan nama : " + nama + " tidak dapat ditemukan!");
+            }
+            connection.commit();
+            return donatur;
+            
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new DonaturException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
 }
