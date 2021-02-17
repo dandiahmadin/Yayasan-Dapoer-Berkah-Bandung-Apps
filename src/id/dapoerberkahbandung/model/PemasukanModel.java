@@ -7,6 +7,8 @@ package id.dapoerberkahbandung.model;
 
 import id.dapoerberkahbandung.database.Koneksi;
 import id.dapoerberkahbandung.entity.Pemasukan;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.DonaturException;
 import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.event.PemasukanListener;
 import id.dapoerberkahbandung.service.PemasukanDao;
@@ -66,7 +68,7 @@ public class PemasukanModel {
         this.uang_tunai = uang_tunai;
         fireOnChange();
     }
-
+    
     public String getId_anggota() {
         return id_anggota;
     }
@@ -77,7 +79,7 @@ public class PemasukanModel {
     }
 
     public String getId_donatur() {
-        return id_anggota;
+        return id_donatur;
     }
 
     public void setId_donatur(String id_donatur) {
@@ -109,13 +111,13 @@ public class PemasukanModel {
         }
     }
     
-    public void insertPemasukan() throws SQLException, PemasukanException {
+    public void insertPemasukan() throws SQLException, PemasukanException, AnggotaException, DonaturException {
         PemasukanDao dao = Koneksi.getPemasukanDao();
         
         Pemasukan pemasukan = new Pemasukan();
         pemasukan.setTanggal(tanggal);
-        pemasukan.setId_anggota(id_anggota);
-        pemasukan.setId_donatur(id_donatur);
+        pemasukan.setId_anggota(dao.getIdAnggota(id_anggota).getId_anggota());
+        pemasukan.setId_donatur(dao.getIdDonatur(id_donatur).getId_donatur());
         pemasukan.setRekening(rekening);
         pemasukan.setUang_tunai(uang_tunai);
         
@@ -123,13 +125,13 @@ public class PemasukanModel {
         fireOnInsert(pemasukan);
     }
     
-    public void updatePemasukan() throws SQLException, PemasukanException {
+    public void updatePemasukan() throws SQLException, PemasukanException, AnggotaException, DonaturException {
         PemasukanDao dao = Koneksi.getPemasukanDao();
         
         Pemasukan pemasukan = new Pemasukan();
         pemasukan.setTanggal(tanggal);
-        pemasukan.setId_anggota(id_anggota);
-        pemasukan.setId_donatur(id_donatur);
+        pemasukan.setId_anggota(dao.getIdAnggota(id_anggota).getId_anggota());
+        pemasukan.setId_donatur(dao.getIdDonatur(id_donatur).getId_donatur());
         pemasukan.setRekening(rekening);
         pemasukan.setUang_tunai(uang_tunai);
         pemasukan.setNo_pemasukan(no_pemasukan);
