@@ -28,8 +28,20 @@ public class PemasukanController {
         Date tanggal = new Date(view.getDateChooser().getDate().getTime());
         String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
         String id_donatur = view.getComboBoxDonatur().getSelectedItem().toString();
-        Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
-        Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        
+        Integer rekening = null;
+        if(view.getTxtRekening().getText().trim().equals("")){
+            rekening = Integer.parseInt(view.getTxtRekening().getText().concat("0"));
+        } else {
+            rekening = Integer.parseInt(view.getTxtRekening().getText());
+        }
+               
+        Integer uang_tunai = null;
+        if(view.getTxtUangTunai().getText().trim().equals("")){
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText().concat("0"));
+        } else {
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        }
         
         if (id_anggota.trim().equals("~ Pilih ~")) {
             JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");
@@ -64,8 +76,20 @@ public class PemasukanController {
         Integer no_pemasukan = Integer.parseInt(view.getTxtNoPemasukan().getText());
         String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
         String id_donatur = view.getComboBoxDonatur().getSelectedItem().toString();
-        Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
-        Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        
+        Integer rekening = null;
+        if(view.getTxtRekening().getText().trim().equals("")){
+            rekening = Integer.parseInt(view.getTxtRekening().getText().concat("0"));
+        } else {
+            rekening = Integer.parseInt(view.getTxtRekening().getText());
+        }
+               
+        Integer uang_tunai = null;
+        if(view.getTxtUangTunai().getText().trim().equals("")){
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText().concat("0"));
+        } else {
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        }
         
         if (id_anggota.trim().equals("~ Pilih ~")) {
             JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");

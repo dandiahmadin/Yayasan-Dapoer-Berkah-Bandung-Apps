@@ -27,19 +27,29 @@ public class PengeluaranController {
    
     public void insertPengeluaran(PengeluaranView view) {
         Date tanggal = new Date(view.getDateChooser().getDate().getTime());
-        String id_anggota = view.getTxtIdAnggota().getText();
-        String id_kebutuhan = view.getTxtIdKebutuhan().getText();
-        Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
-        Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
-       
-        if (id_anggota.trim().equals("")) {
-           JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-           JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
-        } else if (id_kebutuhan.trim().equals("")) {
-           JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Kosong!");
-        } else if (id_kebutuhan.length() > 4) {
-           JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Lebih dari 4 karakter!");
+        String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
+        String id_kebutuhan = view.getComboBoxKebutuhan().getSelectedItem().toString();
+        
+        Integer rekening = null;
+        if(view.getTxtRekening().getText().trim().equals("")){
+            rekening = Integer.parseInt(view.getTxtRekening().getText().concat("0"));
+        } else {
+            rekening = Integer.parseInt(view.getTxtRekening().getText());
+        }
+               
+        Integer uang_tunai = null;
+        if(view.getTxtUangTunai().getText().trim().equals("")){
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText().concat("0"));
+        } else {
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        }
+        
+        if (id_anggota.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");
+        } else if (id_kebutuhan.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Kebutuhan Tidak Boleh Kosong!");
+        } else if (rekening == 0 && uang_tunai == 0){
+            JOptionPane.showMessageDialog(view, "Rekening atau Uang Tunai Tidak Boleh Kosong!");
         } else {
             model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
@@ -63,23 +73,33 @@ public class PengeluaranController {
             JOptionPane.showMessageDialog(view, "Silakan pilih baris yang akan diubah!");
             return;
         }
-        Integer no_pemasukan = Integer.parseInt(view.getTxtNoPengeluaran().getText());
+        Integer no_pengeluaran = Integer.parseInt(view.getTxtNoPengeluaran().getText());
         Date tanggal = new Date(view.getDateChooser().getDate().getTime());
-        String id_anggota = view.getTxtIdAnggota().getText();
-        String id_kebutuhan = view.getTxtIdKebutuhan().getText();
-        Integer rekening = Integer.parseInt(view.getTxtRekening().getText());
-        Integer uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        String id_anggota = view.getComboBoxAnggota().getSelectedItem().toString();
+        String id_kebutuhan = view.getComboBoxKebutuhan().getSelectedItem().toString();
         
-        if (id_anggota.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Kosong!");
-        } else if (id_anggota.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Anggota Tidak Boleh Lebih dari 4 karakter!");
-        } else if (id_kebutuhan.trim().equals("")) {
-            JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Kosong!");
-        } else if (id_kebutuhan.length() > 4) {
-            JOptionPane.showMessageDialog(view, "ID Kebutuhan Tidak Boleh Lebih dari 4 karakter!");
+        Integer rekening = null;
+        if(view.getTxtRekening().getText().trim().equals("")){
+            rekening = Integer.parseInt(view.getTxtRekening().getText().concat("0"));
         } else {
-            model.setNo_pengeluaran(no_pemasukan);
+            rekening = Integer.parseInt(view.getTxtRekening().getText());
+        }
+        
+        Integer uang_tunai = null;
+        if(view.getTxtUangTunai().getText().trim().equals("")){
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText().concat("0"));
+        } else {
+            uang_tunai = Integer.parseInt(view.getTxtUangTunai().getText());
+        }
+        
+        if (id_anggota.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Anggota Tidak Boleh Kosong!");
+        } else if (id_kebutuhan.trim().equals("~ Pilih ~")) {
+            JOptionPane.showMessageDialog(view, "Nama Kebutuhan Tidak Boleh Kosong!");
+        } else if (rekening == 0 && uang_tunai == 0){
+            JOptionPane.showMessageDialog(view, "Rekening atau Uang Tunai Tidak Boleh Kosong!");
+        } else {
+            model.setNo_pengeluaran(no_pengeluaran);
             model.setTanggal(tanggal);
             model.setId_anggota(id_anggota);
             model.setId_kebutuhan(id_kebutuhan);
