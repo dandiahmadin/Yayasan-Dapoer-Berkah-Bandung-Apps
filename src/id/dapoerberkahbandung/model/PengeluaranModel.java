@@ -7,6 +7,8 @@ package id.dapoerberkahbandung.model;
 
 import id.dapoerberkahbandung.database.Koneksi;
 import id.dapoerberkahbandung.entity.Pengeluaran;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.KebutuhanException;
 import id.dapoerberkahbandung.error.PengeluaranException;
 import id.dapoerberkahbandung.event.PengeluaranListener;
 import id.dapoerberkahbandung.service.PengeluaranDao;
@@ -109,13 +111,13 @@ public class PengeluaranModel {
         }
     }
     
-    public void insertPengeluaran() throws SQLException, PengeluaranException {
+    public void insertPengeluaran() throws SQLException, PengeluaranException, AnggotaException, KebutuhanException {
         PengeluaranDao dao = Koneksi.getPengeluaranDao();
         
         Pengeluaran pengeluaran = new Pengeluaran();
-        pengeluaran.setId_anggota(id_anggota);
         pengeluaran.setTanggal(tanggal);
-        pengeluaran.setId_kebutuhan(id_kebutuhan);
+        pengeluaran.setId_anggota(dao.getIdAnggota(id_anggota).getId_anggota());
+        pengeluaran.setId_kebutuhan(dao.getIdKebutuhan(id_kebutuhan).getId_kebutuhan());
         pengeluaran.setRekening(rekening);
         pengeluaran.setUang_tunai(uang_tunai);
         
@@ -123,13 +125,13 @@ public class PengeluaranModel {
         fireOnInsert(pengeluaran);
     }
     
-    public void updatePengeluaran() throws SQLException, PengeluaranException {
+    public void updatePengeluaran() throws SQLException, PengeluaranException, KebutuhanException, AnggotaException {
         PengeluaranDao dao = Koneksi.getPengeluaranDao();
         
         Pengeluaran pengeluaran = new Pengeluaran();
-        pengeluaran.setId_anggota(id_anggota);
         pengeluaran.setTanggal(tanggal);
-        pengeluaran.setId_kebutuhan(id_kebutuhan);
+        pengeluaran.setId_anggota(dao.getIdAnggota(id_anggota).getId_anggota());
+        pengeluaran.setId_kebutuhan(dao.getIdKebutuhan(id_kebutuhan).getId_kebutuhan());
         pengeluaran.setRekening(rekening);
         pengeluaran.setUang_tunai(uang_tunai);
         pengeluaran.setNo_pengeluaran(no_pengeluaran);
