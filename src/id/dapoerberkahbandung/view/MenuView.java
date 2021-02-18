@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class MenuView extends javax.swing.JPanel {
     
-    private AnggotaView berandView;
+    private BerandaView berandaView;
     private AnggotaView anggotaView;
     private DonaturView donaturView;
     private PemasukanView pemasukanView;
@@ -29,7 +29,7 @@ public class MenuView extends javax.swing.JPanel {
     
     public MenuView() throws SQLException, PemasukanException {
         initComponents();
-//        berandaView = new BerandaView();
+        berandaView = new BerandaView();
         anggotaView = new AnggotaView();
         donaturView = new DonaturView();
         pemasukanView = new PemasukanView();
@@ -61,7 +61,10 @@ public class MenuView extends javax.swing.JPanel {
         setBackground(new java.awt.Color(253, 234, 140));
 
         btnBeranda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnBeranda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/home.png"))); // NOI18N
         btnBeranda.setText("Beranda");
+        btnBeranda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBeranda.setIconTextGap(10);
         btnBeranda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBerandaActionPerformed(evt);
@@ -69,7 +72,10 @@ public class MenuView extends javax.swing.JPanel {
         });
 
         btnPemasukan.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnPemasukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/pemasukan.png"))); // NOI18N
         btnPemasukan.setText("Pemasukan");
+        btnPemasukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPemasukan.setIconTextGap(10);
         btnPemasukan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPemasukanActionPerformed(evt);
@@ -77,7 +83,10 @@ public class MenuView extends javax.swing.JPanel {
         });
 
         btnPengeluaran.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnPengeluaran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/pengeluaran.png"))); // NOI18N
         btnPengeluaran.setText("Pengeluaran");
+        btnPengeluaran.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPengeluaran.setIconTextGap(10);
         btnPengeluaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPengeluaranActionPerformed(evt);
@@ -85,7 +94,10 @@ public class MenuView extends javax.swing.JPanel {
         });
 
         btnAnggota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAnggota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/anggota.png"))); // NOI18N
         btnAnggota.setText("Anggota");
+        btnAnggota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAnggota.setIconTextGap(10);
         btnAnggota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnggotaActionPerformed(evt);
@@ -93,7 +105,10 @@ public class MenuView extends javax.swing.JPanel {
         });
 
         btnDonatur.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnDonatur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/donatur.png"))); // NOI18N
         btnDonatur.setText("Donatur");
+        btnDonatur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDonatur.setIconTextGap(10);
         btnDonatur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDonaturActionPerformed(evt);
@@ -101,7 +116,10 @@ public class MenuView extends javax.swing.JPanel {
         });
 
         btnKebutuhan.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnKebutuhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/kebutuhan.png"))); // NOI18N
         btnKebutuhan.setText("Kebutuhan");
+        btnKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnKebutuhan.setIconTextGap(10);
         btnKebutuhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKebutuhanActionPerformed(evt);
@@ -123,8 +141,7 @@ public class MenuView extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/DBB Logo_1 2.png"))); // NOI18N
-        icon.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/id/dapoerberkahbandung/asset/DBB Logo_2 2 nama.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,44 +150,42 @@ public class MenuView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Line2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Line2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(icon)
-                .addGap(47, 47, 47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(15, 15, 15)
                 .addComponent(icon)
                 .addGap(15, 15, 15)
                 .addComponent(Line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addComponent(btnBeranda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(btnPemasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(btnPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(btnAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(btnDonatur, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addComponent(btnKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,7 +203,7 @@ public class MenuView extends javax.swing.JPanel {
         
         try {    
             pemasukanView.loadDatabase();
-        } catch (SQLException | PemasukanException ex) {
+        } catch (SQLException | PemasukanException | AnggotaException | DonaturException ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPemasukanActionPerformed
@@ -220,11 +235,9 @@ public class MenuView extends javax.swing.JPanel {
         MainView.mainPanel.removeAll();
         MainView.mainPanel.repaint();
         MainView.mainPanel.revalidate();
-        
-        BerandaView berandaPanel = new BerandaView();
-        
+                
         // add 
-        MainView.mainPanel.add(berandaPanel);
+        MainView.mainPanel.add(berandaView);
         MainView.mainPanel.repaint();
         MainView.mainPanel.revalidate();
     }//GEN-LAST:event_btnBerandaActionPerformed
@@ -283,7 +296,7 @@ public class MenuView extends javax.swing.JPanel {
         
         try {    
             pengeluaranView.loadDatabase();
-        } catch (SQLException | PengeluaranException ex) {
+        } catch (SQLException | PengeluaranException | AnggotaException | KebutuhanException ex) {
             Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPengeluaranActionPerformed
