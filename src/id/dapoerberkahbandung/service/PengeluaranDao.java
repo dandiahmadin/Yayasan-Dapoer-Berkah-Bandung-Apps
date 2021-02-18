@@ -5,7 +5,11 @@
  */
 package id.dapoerberkahbandung.service;
 
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Kebutuhan;
 import id.dapoerberkahbandung.entity.Pengeluaran;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.KebutuhanException;
 import id.dapoerberkahbandung.error.PengeluaranException;
 import java.util.List;
 
@@ -19,4 +23,8 @@ public interface PengeluaranDao {
     public void deletePengeluaran(int no_pengeluaran) throws PengeluaranException;
     public Pengeluaran getPengeluaran(int no_pengeluaran) throws PengeluaranException;
     public List<Pengeluaran> selectAllPengeluaran() throws PengeluaranException;
+    public List<Anggota> selectNameAnggota() throws AnggotaException;
+    public List<Kebutuhan> selectNameKebutuhan() throws KebutuhanException;
+    public Anggota getIdAnggota(String nama) throws AnggotaException;
+    public Kebutuhan getIdKebutuhan(String nama) throws KebutuhanException;
 }
