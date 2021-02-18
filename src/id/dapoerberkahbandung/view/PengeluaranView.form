@@ -56,12 +56,10 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnHapus" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtIdKebutuhan" alignment="0" pref="40" max="32767" attributes="0"/>
-                              <Component id="txtIdAnggota" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtNoPengeluaran" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtNoPengeluaran" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="dateChooser" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="comboBoxKebutuhan" min="-2" pref="145" max="-2" attributes="0"/>
+                          <Component id="comboBoxAnggota" min="-2" pref="145" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -88,12 +86,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="idAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtIdAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="idKebutuhan" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtIdKebutuhan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxKebutuhan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -157,7 +155,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd MMM yyyy"/>
+        <Property name="dateFormatString" type="java.lang.String" value="dd MMMM yyyy"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
@@ -169,18 +167,8 @@
           <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ID Anggota :"/>
+        <Property name="text" type="java.lang.String" value="Anggota :"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtIdAnggota">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdAnggotaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="idKebutuhan">
       <Properties>
@@ -188,18 +176,8 @@
           <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="ID Kebutuhan :"/>
+        <Property name="text" type="java.lang.String" value="Kebutuhan :"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtIdKebutuhan">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdKebutuhanActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="idRekening">
       <Properties>
@@ -307,6 +285,42 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboBoxAnggota">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboBoxKebutuhan">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

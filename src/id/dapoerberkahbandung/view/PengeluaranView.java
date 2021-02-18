@@ -8,13 +8,21 @@ package id.dapoerberkahbandung.view;
 import com.toedter.calendar.JDateChooser;
 import id.dapoerberkahbandung.controller.PengeluaranController;
 import id.dapoerberkahbandung.database.Koneksi;
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Kebutuhan;
 import id.dapoerberkahbandung.entity.Pengeluaran;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.KebutuhanException;
 import id.dapoerberkahbandung.error.PengeluaranException;
 import id.dapoerberkahbandung.event.PengeluaranListener;
 import id.dapoerberkahbandung.model.PengeluaranModel;
 import id.dapoerberkahbandung.model.TabelPengeluaranModel;
 import id.dapoerberkahbandung.service.PengeluaranDao;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -54,15 +62,15 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     public JDateChooser getDateChooser() {
         return dateChooser;
     }
+
+    public JComboBox<String> getComboBoxAnggota() {
+        return comboBoxAnggota;
+    }
+
+    public JComboBox<String> getComboBoxKebutuhan() {
+        return comboBoxKebutuhan;
+    }
     
-    public JTextField getTxtIdAnggota() {
-        return txtIdAnggota;
-    }
-
-    public JTextField getTxtIdKebutuhan() {
-        return txtIdKebutuhan;
-    }
-
     public JTextField getTxtNoPengeluaran() {
         return txtNoPengeluaran;
     }
@@ -93,9 +101,7 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idAnggota1 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
         idAnggota = new javax.swing.JLabel();
-        txtIdAnggota = new javax.swing.JTextField();
         idKebutuhan = new javax.swing.JLabel();
-        txtIdKebutuhan = new javax.swing.JTextField();
         idRekening = new javax.swing.JLabel();
         txtRekening = new javax.swing.JTextField();
         idUangTunai = new javax.swing.JLabel();
@@ -106,6 +112,8 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        comboBoxAnggota = new javax.swing.JComboBox<>();
+        comboBoxKebutuhan = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(250, 245, 224));
 
@@ -128,30 +136,16 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idAnggota1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idAnggota1.setText("Tanggal :");
 
-        dateChooser.setDateFormatString("dd MMM yyyy");
+        dateChooser.setDateFormatString("dd MMMM yyyy");
         dateChooser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
         idAnggota.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        idAnggota.setText("ID Anggota :");
-
-        txtIdAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        txtIdAnggota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdAnggotaActionPerformed(evt);
-            }
-        });
+        idAnggota.setText("Anggota :");
 
         idKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        idKebutuhan.setText("ID Kebutuhan :");
-
-        txtIdKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        txtIdKebutuhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdKebutuhanActionPerformed(evt);
-            }
-        });
+        idKebutuhan.setText("Kebutuhan :");
 
         idRekening.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idRekening.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -221,6 +215,12 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
             }
         });
 
+        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboBoxKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxKebutuhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,11 +255,10 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                                 .addComponent(btnUbah)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnHapus))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                                .addComponent(txtIdAnggota, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNoPengeluaran, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNoPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -279,11 +278,11 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idAnggota)
-                    .addComponent(txtIdAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idKebutuhan)
-                    .addComponent(txtIdKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxKebutuhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idRekening)
@@ -308,14 +307,6 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoPengeluaranActionPerformed
 
-    private void txtIdAnggotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAnggotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdAnggotaActionPerformed
-
-    private void txtIdKebutuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdKebutuhanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdKebutuhanActionPerformed
-
     private void txtRekeningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRekeningActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRekeningActionPerformed
@@ -327,21 +318,29 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
         controller.insertPengeluaran(this);
+        comboBoxAnggota.setSelectedIndex(0);
+        comboBoxKebutuhan.setSelectedIndex(0);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         controller.resetPengeluaran(this);
+        comboBoxAnggota.setSelectedIndex(0);
+        comboBoxKebutuhan.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
         controller.updatePengeluaran(this);
+        comboBoxAnggota.setSelectedIndex(0);
+        comboBoxKebutuhan.setSelectedIndex(0);
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
         controller.deletePengeluaran(this);
+        comboBoxAnggota.setSelectedIndex(0);
+        comboBoxKebutuhan.setSelectedIndex(0);
     }//GEN-LAST:event_btnHapusActionPerformed
 
 
@@ -350,6 +349,8 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JComboBox<String> comboBoxAnggota;
+    private javax.swing.JComboBox<String> comboBoxKebutuhan;
     private javax.swing.JLabel dataPengeluaran;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel idAnggota;
@@ -360,8 +361,6 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     private javax.swing.JLabel idUangTunai;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelPengeluaran;
-    private javax.swing.JTextField txtIdAnggota;
-    private javax.swing.JTextField txtIdKebutuhan;
     private javax.swing.JTextField txtNoPengeluaran;
     private javax.swing.JTextField txtRekening;
     private javax.swing.JTextField txtUangTunai;
@@ -371,8 +370,8 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     public void onChange(PengeluaranModel model) {
         txtNoPengeluaran.setText(model.getNo_pengeluaran()+ "");
         dateChooser.setDate(model.getTanggal());
-        txtIdAnggota.setText(model.getId_anggota());
-        txtIdKebutuhan.setText(model.getId_kebutuhan());
+        comboBoxAnggota.setSelectedItem(model.getId_anggota());
+        comboBoxKebutuhan.setSelectedItem(model.getId_kebutuhan());
         txtRekening.setText(String.valueOf(model.getRekening()));
         txtUangTunai.setText(String.valueOf(model.getUang_tunai()));
     }
@@ -380,18 +379,33 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
     @Override
     public void onInsert(Pengeluaran pengeluaran) {
         tabelPengeluaranModel.add(pengeluaran);
+        try {
+            loadDatabase();
+        } catch (SQLException | PengeluaranException | AnggotaException | KebutuhanException ex) {
+            Logger.getLogger(PengeluaranView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void onUpdate(Pengeluaran pengeluaran) {
         int index = tabelPengeluaran.getSelectedRow();
         tabelPengeluaranModel.set(index, pengeluaran);
+        try {
+            loadDatabase();
+        } catch (SQLException | PengeluaranException | AnggotaException | KebutuhanException ex) {
+            Logger.getLogger(PengeluaranView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void onDelete() {
         int index = tabelPengeluaran.getSelectedRow();
         tabelPengeluaranModel.remove(index);
+        try {
+            loadDatabase();
+        } catch (SQLException | PengeluaranException | AnggotaException | KebutuhanException ex) {
+            Logger.getLogger(PengeluaranView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -400,16 +414,33 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
             Pengeluaran model = tabelPengeluaranModel.get(tabelPengeluaran.getSelectedRow());
             txtNoPengeluaran.setText(model.getNo_pengeluaran() + "");
             dateChooser.setDate(model.getTanggal());
-            txtIdAnggota.setText(model.getId_anggota());
-            txtIdKebutuhan.setText(model.getId_kebutuhan());
+            comboBoxAnggota.setSelectedItem(model.getId_anggota());
+            comboBoxKebutuhan.setSelectedItem(model.getId_kebutuhan());
             txtRekening.setText(model.getRekening()+ "");
             txtUangTunai.setText(model.getUang_tunai()+ "");
        } catch (IndexOutOfBoundsException e) {
         }
     }
     
-    public void loadDatabase() throws SQLException, PengeluaranException {
+    public void loadDatabase() throws SQLException, PengeluaranException, AnggotaException, KebutuhanException {
         PengeluaranDao dao = Koneksi.getPengeluaranDao();
         tabelPengeluaranModel.setList(dao.selectAllPengeluaran());
+        
+        comboBoxAnggota.removeAllItems();
+        comboBoxKebutuhan.removeAllItems();
+        
+        comboBoxAnggota.addItem("~ Pilih ~");
+        comboBoxKebutuhan.addItem("~ Pilih ~");
+        
+        List<Anggota> id_anggota = dao.selectNameAnggota();
+        for (Anggota id : id_anggota) {
+            comboBoxAnggota.addItem(String.valueOf(id.getNama()));
+        }
+
+        List<Kebutuhan> id_kebutuhan = dao.selectNameKebutuhan();
+        for (Kebutuhan id : id_kebutuhan) {
+            comboBoxKebutuhan.addItem(String.valueOf(id.getNama_kebutuhan()));
+        }
+        
     }
 }
