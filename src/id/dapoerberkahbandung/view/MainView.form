@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="id.dapoerberkahbandung.view.MenuView" name="menuView1">
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="YAYASAN DAPOER BERKAH BANDUNG"/>
@@ -32,78 +28,28 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="menuPanel" min="-2" pref="200" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="mainPanel" max="32767" attributes="0"/>
+              <Component id="mainPanel" pref="600" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="menuPanel" pref="494" max="32767" attributes="0"/>
-          <Component id="mainPanel" alignment="0" max="32767" attributes="0"/>
+          <Component id="mainPanel" alignment="0" pref="494" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="menuPanel">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="menuPanel.add(menuView);&#xa;menuPanel.repaint();&#xa;menuPanel.revalidate();"/>
-      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-      <SubComponents>
-        <Component class="id.dapoerberkahbandung.view.MenuView" name="menuView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card2"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="mainPanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="mainPanel.add(berandaView);&#xa;mainPanel.repaint();&#xa;mainPanel.revalidate();"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-      <SubComponents>
-        <Component class="id.dapoerberkahbandung.view.BerandaView" name="berandaView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card2"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="id.dapoerberkahbandung.view.AnggotaView" name="anggotaView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card3"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="id.dapoerberkahbandung.view.DonaturView" name="donaturView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card4"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="id.dapoerberkahbandung.view.PemasukanView" name="pemasukanView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card5"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="id.dapoerberkahbandung.view.PengeluaranView" name="pengeluaranView">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card6"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

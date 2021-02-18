@@ -5,9 +5,9 @@
  */
 package id.dapoerberkahbandung.view;
 
+import id.dapoerberkahbandung.error.PemasukanException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**
@@ -19,9 +19,21 @@ public class MainView extends javax.swing.JFrame {
     /**
      * Creates new form MainView
      */
-    
-    public MainView() throws SQLException {
+//    private final MenuView menuView;
+//    private final BerandaView berandaView;
+    public MainView() {
         initComponents();
+        
+        try {
+            menuPanel.add(new MenuView());
+            menuPanel.repaint();
+            menuPanel.revalidate();
+
+            mainPanel.add(new BerandaView());
+            mainPanel.repaint();
+            mainPanel.revalidate();           
+        } catch (PemasukanException | SQLException e) {
+        }
         
     }
     
@@ -34,59 +46,16 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try {
-            menuView1 = new id.dapoerberkahbandung.view.MenuView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        } catch (id.dapoerberkahbandung.error.PemasukanException e2) {
-            e2.printStackTrace();
-        }
         menuPanel = new javax.swing.JPanel();
-        try {
-            menuView = new id.dapoerberkahbandung.view.MenuView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        } catch (id.dapoerberkahbandung.error.PemasukanException e2) {
-            e2.printStackTrace();
-        }
         mainPanel = new javax.swing.JPanel();
-        berandaView = new id.dapoerberkahbandung.view.BerandaView();
-        try {
-            anggotaView = new id.dapoerberkahbandung.view.AnggotaView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            donaturView = new id.dapoerberkahbandung.view.DonaturView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            pemasukanView = new id.dapoerberkahbandung.view.PemasukanView();
-        } catch (id.dapoerberkahbandung.error.PemasukanException e1) {
-            e1.printStackTrace();
-        }
-        pengeluaranView = new id.dapoerberkahbandung.view.PengeluaranView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAYASAN DAPOER BERKAH BANDUNG");
         setResizable(false);
 
         menuPanel.setLayout(new java.awt.CardLayout());
-        menuPanel.add(menuView);
-        menuPanel.repaint();
-        menuPanel.revalidate();
-        menuPanel.add(menuView, "card2");
 
         mainPanel.setLayout(new java.awt.CardLayout());
-        mainPanel.add(berandaView);
-        mainPanel.repaint();
-        mainPanel.revalidate();
-        mainPanel.add(berandaView, "card2");
-        mainPanel.add(anggotaView, "card3");
-        mainPanel.add(donaturView, "card4");
-        mainPanel.add(pemasukanView, "card5");
-        mainPanel.add(pengeluaranView, "card6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,12 +64,12 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,25 +106,14 @@ public class MainView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new MainView().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new MainView().setVisible(true);
                 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private id.dapoerberkahbandung.view.AnggotaView anggotaView;
-    private id.dapoerberkahbandung.view.BerandaView berandaView;
-    private id.dapoerberkahbandung.view.DonaturView donaturView;
     public static javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
-    private id.dapoerberkahbandung.view.MenuView menuView;
-    private id.dapoerberkahbandung.view.MenuView menuView1;
-    private id.dapoerberkahbandung.view.PemasukanView pemasukanView;
-    private id.dapoerberkahbandung.view.PengeluaranView pengeluaranView;
     // End of variables declaration//GEN-END:variables
 }
