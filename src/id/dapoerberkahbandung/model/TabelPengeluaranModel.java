@@ -53,10 +53,10 @@ public class TabelPengeluaranModel extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case 0 : return "Nomor Pengeluaran";
+            case 0 : return "Nomor";
             case 1 : return "Tanggal";
-            case 2 : return "ID Anggota";
-            case 3 : return "ID Kebutuhan";
+            case 2 : return "Anggota";
+            case 3 : return "Kebutuhan";
             case 4 : return "Rekening";
             case 5 : return "Uang Tunai";
             default: return null;
