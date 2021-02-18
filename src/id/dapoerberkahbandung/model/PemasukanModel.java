@@ -120,7 +120,6 @@ public class PemasukanModel {
         pemasukan.setId_donatur(dao.getIdDonatur(id_donatur).getId_donatur());
         pemasukan.setRekening(rekening);
         pemasukan.setUang_tunai(uang_tunai);
-        
         dao.insertPemasukan(pemasukan);
         fireOnInsert(pemasukan);
     }
