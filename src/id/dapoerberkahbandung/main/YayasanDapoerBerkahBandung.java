@@ -5,6 +5,7 @@
  */
 package id.dapoerberkahbandung.main;
 
+import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.view.MainView;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,16 +26,12 @@ public class YayasanDapoerBerkahBandung {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    MainView mainView = new MainView();
-                    mainView.setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(YayasanDapoerBerkahBandung.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                MainView mainView = new MainView();
+                mainView.setVisible(true);
                 
             }
             
-        });   
+        }); 
     }
     
 }
