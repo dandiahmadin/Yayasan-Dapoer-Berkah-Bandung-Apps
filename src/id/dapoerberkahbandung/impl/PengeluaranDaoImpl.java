@@ -5,7 +5,11 @@
  */
 package id.dapoerberkahbandung.impl;
 
+import id.dapoerberkahbandung.entity.Anggota;
+import id.dapoerberkahbandung.entity.Kebutuhan;
 import id.dapoerberkahbandung.entity.Pengeluaran;
+import id.dapoerberkahbandung.error.AnggotaException;
+import id.dapoerberkahbandung.error.KebutuhanException;
 import id.dapoerberkahbandung.error.PengeluaranException;
 import id.dapoerberkahbandung.service.PengeluaranDao;
 import java.sql.Connection;
@@ -29,7 +33,11 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
     private final String updatePengeluaran = "UPDATE pengeluaran SET tanggal=?, id_anggota=?, id_kebutuhan=?, rekening=?, uang_tunai=? WHERE no_pengeluaran=?";
     private final String deletePengeluaran = "DELETE FROM pengeluaran WHERE no_pengeluaran=?";
     private final String getPengeluaran = "SELECT * FROM pengeluaran WHERE no_pengeluaran=?";
-    private final String selectAllPengeluaran = "SELECT * FROM pengeluaran";
+    private final String selectAllPengeluaran = "SELECT pengeluaran.no_pengeluaran, pengeluaran.tanggal, anggota.nama, kebutuhan.nama, pengeluaran.rekening, pengeluaran.uang_tunai FROM pengeluaran, anggota, kebutuhan WHERE pengeluaran.id_anggota = anggota.id_anggota AND pengeluaran.id_kebutuhan = kebutuhan.id_kebutuhan";
+    private final String selectNameAnggota = "SELECT nama FROM anggota ORDER BY nama";
+    private final String selectNameKebutuhan = "SELECT nama FROM kebutuhan ORDER BY nama";
+    private final String getIdAnggota = "SELECT id_anggota FROM anggota WHERE nama=?";
+    private final String getIdKebutuhan = "SELECT id_kebutuhan FROM kebutuhan WHERE nama=?";
     
     public PengeluaranDaoImpl(Connection connection) {
         this.connection = connection;
@@ -234,6 +242,163 @@ public class PengeluaranDaoImpl implements PengeluaranDao{
                 }
             }
         }
+    }
+
+    @Override
+    public List<Anggota> selectNameAnggota() throws AnggotaException {
+        Statement statement = null;
+        List<Anggota> list = new ArrayList<Anggota>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            
+            ResultSet result = statement.executeQuery(selectNameAnggota);
+            Anggota anggota = null;
+            while (result.next()) {
+                anggota = new Anggota();
+                anggota.setNama(result.getString("nama"));
+                list.add(anggota);
+            }
+            connection.commit();
+            return list;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new AnggotaException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<Kebutuhan> selectNameKebutuhan() throws KebutuhanException {
+        Statement statement = null;
+        List<Kebutuhan> list = new ArrayList<Kebutuhan>();
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.createStatement();
+            
+            ResultSet result = statement.executeQuery(selectNameKebutuhan);
+            Kebutuhan kebutuhan = null;
+            while (result.next()) {
+                kebutuhan = new Kebutuhan();
+                kebutuhan.setNama_kebutuhan(result.getString("nama"));
+                list.add(kebutuhan);
+            }
+            connection.commit();
+            return list;
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new KebutuhanException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public Anggota getIdAnggota(String nama) throws AnggotaException {
+        PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getIdAnggota);
+            statement.setString(1, nama);
+            
+            ResultSet result = statement.executeQuery();
+            Anggota anggota = null;
+            
+            if(result.next()) {
+                anggota = new Anggota();
+                anggota.setId_anggota(result.getString("id_anggota"));
+                
+            } else {
+                throw new AnggotaException("Anggota dengan nama : " + nama + " tidak dapat ditemukan!");
+            }
+            connection.commit();
+            return anggota;
+        } catch (AnggotaException | SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new AnggotaException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public Kebutuhan getIdKebutuhan(String nama) throws KebutuhanException {
+       PreparedStatement statement = null;
+        try {
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(getIdKebutuhan);
+            statement.setString(1, nama);
+            
+            ResultSet result = statement.executeQuery();
+            Kebutuhan kebutuhan = null;
+            
+            if(result.next()) {
+                kebutuhan = new Kebutuhan();
+                kebutuhan.setId_kebutuhan(result.getString("id_kebutuhan"));
+            } else {
+                throw new KebutuhanException("Kebutuhan dengan nama : " + nama + " tidak dapat ditemukan!");
+            }
+            connection.commit();
+            return kebutuhan;
+        } catch (KebutuhanException | SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+            }
+            throw new KebutuhanException(e.getMessage());
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+            
+            if(statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        } 
     }
     
 }
