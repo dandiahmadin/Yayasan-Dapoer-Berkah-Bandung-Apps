@@ -5,11 +5,7 @@
  */
 package id.dapoerberkahbandung.main;
 
-import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.view.MainView;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**
@@ -32,6 +28,7 @@ public class YayasanDapoerBerkahBandung {
             }
             
         }); 
+
     }
     
 }
