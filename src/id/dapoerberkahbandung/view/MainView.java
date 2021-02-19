@@ -6,8 +6,8 @@
 package id.dapoerberkahbandung.view;
 
 import id.dapoerberkahbandung.error.PemasukanException;
+import id.dapoerberkahbandung.error.PengeluaranException;
 import java.sql.SQLException;
-
 
 
 /**
@@ -24,15 +24,16 @@ public class MainView extends javax.swing.JFrame {
     public MainView() {
         initComponents();
         
-        try {
+        try {            
             menuPanel.add(new MenuView());
             menuPanel.repaint();
             menuPanel.revalidate();
 
             mainPanel.add(new BerandaView());
             mainPanel.repaint();
-            mainPanel.revalidate();           
-        } catch (PemasukanException | SQLException e) {
+            mainPanel.revalidate();
+            
+        } catch (PemasukanException | SQLException | PengeluaranException e) {
         }
         
     }
