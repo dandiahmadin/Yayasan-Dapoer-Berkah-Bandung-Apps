@@ -27,7 +27,7 @@ public class MenuView extends javax.swing.JPanel {
     private KebutuhanView kebutuhanView;
     private PengeluaranView pengeluaranView;
     
-    public MenuView() throws SQLException, PemasukanException {
+    public MenuView() throws SQLException, PemasukanException, PengeluaranException {
         initComponents();
         berandaView = new BerandaView();
         anggotaView = new AnggotaView();
@@ -240,6 +240,13 @@ public class MenuView extends javax.swing.JPanel {
         MainView.mainPanel.add(berandaView);
         MainView.mainPanel.repaint();
         MainView.mainPanel.revalidate();
+        
+        try {
+            berandaView.loadDatabase();
+        } catch (SQLException | PemasukanException | PengeluaranException ex) {
+            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnBerandaActionPerformed
 
     private void btnDonaturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonaturActionPerformed
