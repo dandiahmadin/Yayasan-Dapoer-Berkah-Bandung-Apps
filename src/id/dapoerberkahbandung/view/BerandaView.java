@@ -5,6 +5,14 @@
  */
 package id.dapoerberkahbandung.view;
 
+import id.dapoerberkahbandung.database.Koneksi;
+import id.dapoerberkahbandung.error.PemasukanException;
+import id.dapoerberkahbandung.error.PengeluaranException;
+import id.dapoerberkahbandung.model.BerandaModel;
+import id.dapoerberkahbandung.service.BerandaDao;
+import java.sql.SQLException;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Dandi Ahmadin
@@ -14,10 +22,27 @@ public class BerandaView extends javax.swing.JPanel {
     /**
      * Creates new form BerandaView
      */
-    public BerandaView() {
+    
+    private BerandaModel model;
+    public BerandaView() throws SQLException, PemasukanException, PengeluaranException {
         initComponents();
-        
+        model = new BerandaModel();
+        loadDatabase();
     }
+
+    public void setLabelPemasukan(JLabel labelPemasukan) {
+        this.labelPemasukan = labelPemasukan;
+    }
+
+    public void setLabelPengeluaran(JLabel labelPengeluaran) {
+        this.labelPengeluaran = labelPengeluaran;
+    }
+
+    public void setLabelSaldo(JLabel labelSaldo) {
+        this.labelSaldo = labelSaldo;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,10 +56,13 @@ public class BerandaView extends javax.swing.JPanel {
         Judul = new javax.swing.JLabel();
         saldoPanel = new javax.swing.JPanel();
         saldo = new javax.swing.JLabel();
+        labelSaldo = new javax.swing.JLabel();
         pemasukanPanel = new javax.swing.JPanel();
         pemasukan = new javax.swing.JLabel();
+        labelPemasukan = new javax.swing.JLabel();
         pengeluaranPanel = new javax.swing.JPanel();
         pengeluaran = new javax.swing.JLabel();
+        labelPengeluaran = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(250, 245, 224));
         setPreferredSize(new java.awt.Dimension(600, 480));
@@ -46,7 +74,11 @@ public class BerandaView extends javax.swing.JPanel {
         saldoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         saldo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        saldo.setForeground(java.awt.Color.lightGray);
         saldo.setText("Saldo");
+
+        labelSaldo.setFont(new java.awt.Font("Cambria Math", 1, 36)); // NOI18N
+        labelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout saldoPanelLayout = new javax.swing.GroupLayout(saldoPanel);
         saldoPanel.setLayout(saldoPanelLayout);
@@ -54,22 +86,32 @@ public class BerandaView extends javax.swing.JPanel {
             saldoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saldoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(saldo)
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addGroup(saldoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(saldoPanelLayout.createSequentialGroup()
+                        .addComponent(saldo)
+                        .addGap(0, 416, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         saldoPanelLayout.setVerticalGroup(
             saldoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saldoPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(saldo)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
+                .addComponent(labelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pemasukanPanel.setBackground(new java.awt.Color(255, 255, 255));
         pemasukanPanel.setPreferredSize(new java.awt.Dimension(230, 100));
 
         pemasukan.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        pemasukan.setForeground(java.awt.Color.lightGray);
         pemasukan.setText("Pemasukan");
+
+        labelPemasukan.setFont(new java.awt.Font("Cambria Math", 1, 36)); // NOI18N
+        labelPemasukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout pemasukanPanelLayout = new javax.swing.GroupLayout(pemasukanPanel);
         pemasukanPanel.setLayout(pemasukanPanelLayout);
@@ -77,21 +119,31 @@ public class BerandaView extends javax.swing.JPanel {
             pemasukanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pemasukanPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pemasukan)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGroup(pemasukanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pemasukanPanelLayout.createSequentialGroup()
+                        .addComponent(pemasukan)
+                        .addGap(0, 118, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pemasukanPanelLayout.setVerticalGroup(
             pemasukanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pemasukanPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pemasukan)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(labelPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pengeluaranPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         pengeluaran.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        pengeluaran.setForeground(java.awt.Color.lightGray);
         pengeluaran.setText("Pengeluaran");
+
+        labelPengeluaran.setFont(new java.awt.Font("Cambria Math", 1, 36)); // NOI18N
+        labelPengeluaran.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout pengeluaranPanelLayout = new javax.swing.GroupLayout(pengeluaranPanel);
         pengeluaranPanel.setLayout(pengeluaranPanelLayout);
@@ -99,15 +151,21 @@ public class BerandaView extends javax.swing.JPanel {
             pengeluaranPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pengeluaran)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(pengeluaranPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPengeluaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pengeluaranPanelLayout.createSequentialGroup()
+                        .addComponent(pengeluaran)
+                        .addGap(0, 109, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pengeluaranPanelLayout.setVerticalGroup(
             pengeluaranPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pengeluaran)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(labelPengeluaran, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -122,27 +180,30 @@ public class BerandaView extends javax.swing.JPanel {
                         .addComponent(pemasukanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pengeluaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(saldoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saldoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(30, 30, 30)
                 .addComponent(Judul)
-                .addGap(103, 103, 103)
+                .addGap(100, 100, 100)
                 .addComponent(saldoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pengeluaranPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pemasukanPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pemasukanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pengeluaranPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Judul;
+    private javax.swing.JLabel labelPemasukan;
+    private javax.swing.JLabel labelPengeluaran;
+    private javax.swing.JLabel labelSaldo;
     private javax.swing.JLabel pemasukan;
     private javax.swing.JPanel pemasukanPanel;
     private javax.swing.JLabel pengeluaran;
@@ -150,4 +211,13 @@ public class BerandaView extends javax.swing.JPanel {
     private javax.swing.JLabel saldo;
     private javax.swing.JPanel saldoPanel;
     // End of variables declaration//GEN-END:variables
+
+
+public void loadDatabase() throws SQLException, PemasukanException, PengeluaranException {
+    BerandaDao dao = Koneksi.getBerandaDao();
+    labelSaldo.setText(model.getSaldoAll());
+    labelPemasukan.setText(model.getSaldoPemasukanAll());
+    labelPengeluaran.setText(model.getSaldoPengeluaranAll());
+}
+
 }
