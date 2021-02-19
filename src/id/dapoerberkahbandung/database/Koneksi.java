@@ -8,11 +8,13 @@ package id.dapoerberkahbandung.database;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import id.dapoerberkahbandung.impl.AnggotaDaoImpl;
+import id.dapoerberkahbandung.impl.BerandaDaoImpl;
 import id.dapoerberkahbandung.impl.DonaturDaoImpl;
 import id.dapoerberkahbandung.impl.KebutuhanDaoImpl;
 import id.dapoerberkahbandung.impl.PemasukanDaoImpl;
 import id.dapoerberkahbandung.impl.PengeluaranDaoImpl;
 import id.dapoerberkahbandung.service.AnggotaDao;
+import id.dapoerberkahbandung.service.BerandaDao;
 import id.dapoerberkahbandung.service.DonaturDao;
 import id.dapoerberkahbandung.service.KebutuhanDao;
 import id.dapoerberkahbandung.service.PemasukanDao;
@@ -30,6 +32,7 @@ public class Koneksi {
     private static KebutuhanDao kebutuhanDao;
     private static PemasukanDao pemasukanDao;
     private static PengeluaranDao pengeluaranDao;
+    private static BerandaDao berandaDao;
     
     
     public static Connection getConnection() throws SQLException {
@@ -82,6 +85,14 @@ public class Koneksi {
         }
         
         return pengeluaranDao;
+    }
+    
+    public static BerandaDao getBerandaDao() throws SQLException {
+        if (berandaDao == null) {
+            berandaDao = new BerandaDaoImpl(getConnection());
+        }
+        
+        return berandaDao;
     }
 
 }
