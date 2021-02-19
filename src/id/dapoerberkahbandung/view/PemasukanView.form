@@ -69,29 +69,28 @@
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="btnReset" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnTambah" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnUbah" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnHapus" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="anggota" alignment="0" pref="117" max="32767" attributes="0"/>
-                                  <Component id="donatur" alignment="0" max="32767" attributes="0"/>
                                   <Component id="rekening" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="donatur" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="anggota" pref="137" max="32767" attributes="0"/>
                                   <Component id="uangTunai" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnReset" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnTambah" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnUbah" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnHapus" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="comboBoxAnggota" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtUangTunai" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtRekening" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="comboBoxDonatur" alignment="0" pref="145" max="32767" attributes="0"/>
-                                  </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="comboBoxDonatur" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <Component id="comboBoxAnggota" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <Component id="txtRekening" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
+                                  <Component id="txtUangTunai" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -119,13 +118,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="anggota" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboBoxAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anggota" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="donatur" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboBoxDonatur" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="donatur" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -158,13 +157,13 @@
           <Font name="Century Gothic" size="26" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="DATA PEMASUKAN"/>
+        <Property name="text" type="java.lang.String" value="Data Pemasukan"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="no_pemasukan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nomor Pemasukan :"/>
       </Properties>
@@ -172,7 +171,7 @@
     <Component class="javax.swing.JLabel" name="anggota">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Nama Anggota :"/>
@@ -181,7 +180,7 @@
     <Component class="javax.swing.JLabel" name="donatur">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Nama Donatur :"/>
@@ -190,7 +189,7 @@
     <Component class="javax.swing.JLabel" name="rekening">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Rekening :"/>
@@ -199,7 +198,7 @@
     <Component class="javax.swing.JLabel" name="uangTunai">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Uang Tunai :"/>
@@ -313,7 +312,7 @@
     <Component class="javax.swing.JLabel" name="anggota1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Tanggal :"/>
