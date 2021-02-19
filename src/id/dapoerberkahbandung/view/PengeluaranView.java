@@ -101,7 +101,9 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idAnggota1 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
         idAnggota = new javax.swing.JLabel();
+        comboBoxAnggota = new javax.swing.JComboBox<>();
         idKebutuhan = new javax.swing.JLabel();
+        comboBoxKebutuhan = new javax.swing.JComboBox<>();
         idRekening = new javax.swing.JLabel();
         txtRekening = new javax.swing.JTextField();
         idUangTunai = new javax.swing.JLabel();
@@ -112,8 +114,6 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        comboBoxAnggota = new javax.swing.JComboBox<>();
-        comboBoxKebutuhan = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(250, 245, 224));
 
@@ -143,9 +143,15 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
         idAnggota.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idAnggota.setText("Anggota :");
 
+        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         idKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         idKebutuhan.setText("Kebutuhan :");
+
+        comboBoxKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxKebutuhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         idRekening.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         idRekening.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -214,12 +220,6 @@ public class PengeluaranView extends javax.swing.JPanel implements PengeluaranLi
                 btnHapusActionPerformed(evt);
             }
         });
-
-        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboBoxKebutuhan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        comboBoxKebutuhan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

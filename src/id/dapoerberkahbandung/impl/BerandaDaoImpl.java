@@ -20,8 +20,8 @@ import java.sql.Statement;
 public class BerandaDaoImpl implements BerandaDao{
     
     private Connection connection;
-    private final String getSaldoPemasukan = "SELECT (SUM(pemasukan.rekening)) + (SUM(pemasukan.uang_tunai)) FROM pemasukan"; 
-    private final String getSaldoPengeluaran = "SELECT (SUM(pengeluaran.rekening)) + (SUM(pengeluaran.uang_tunai)) FROM pengeluaran"; 
+    private final String getSaldoPemasukan = "SELECT SUM(pemasukan.rekening) + SUM(pemasukan.uang_tunai) FROM pemasukan"; 
+    private final String getSaldoPengeluaran = "SELECT SUM(pengeluaran.rekening) + SUM(pengeluaran.uang_tunai) FROM pengeluaran"; 
 
     public BerandaDaoImpl(Connection connection) {
         this.connection = connection;

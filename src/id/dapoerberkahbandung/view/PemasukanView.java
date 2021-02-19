@@ -104,6 +104,8 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         rekening = new javax.swing.JLabel();
         uangTunai = new javax.swing.JLabel();
         txtNoPemasukan = new javax.swing.JTextField();
+        comboBoxAnggota = new javax.swing.JComboBox<>();
+        comboBoxDonatur = new javax.swing.JComboBox<>();
         txtRekening = new javax.swing.JTextField();
         txtUangTunai = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
@@ -114,8 +116,6 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         tabelPemasukan = new javax.swing.JTable();
         dateChooser = new com.toedter.calendar.JDateChooser();
         anggota1 = new javax.swing.JLabel();
-        comboBoxAnggota = new javax.swing.JComboBox<>();
-        comboBoxDonatur = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,6 +163,12 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
                 txtNoPemasukanActionPerformed(evt);
             }
         });
+
+        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboBoxDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        comboBoxDonatur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtRekening.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
@@ -225,12 +231,6 @@ public class PemasukanView extends javax.swing.JPanel implements PemasukanListen
         anggota1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         anggota1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         anggota1.setText("Tanggal :");
-
-        comboBoxAnggota.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        comboBoxAnggota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboBoxDonatur.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        comboBoxDonatur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -5,7 +5,6 @@
  */
 package id.dapoerberkahbandung.model;
 
-import com.sun.javafx.binding.StringFormatter;
 import id.dapoerberkahbandung.database.Koneksi;
 import id.dapoerberkahbandung.error.PemasukanException;
 import id.dapoerberkahbandung.error.PengeluaranException;
@@ -13,7 +12,6 @@ import id.dapoerberkahbandung.service.BerandaDao;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
 /**
  *
