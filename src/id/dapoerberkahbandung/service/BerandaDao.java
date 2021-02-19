@@ -5,10 +5,15 @@
  */
 package id.dapoerberkahbandung.service;
 
+import id.dapoerberkahbandung.error.PemasukanException;
+import id.dapoerberkahbandung.error.PengeluaranException;
+
 /**
  *
  * @author Dandi Ahmadin
  */
 public interface BerandaDao {
+    public int getSaldoPemasukan() throws PemasukanException;
+    public int getSaldoPengeluaran() throws PengeluaranException;
     
 }
