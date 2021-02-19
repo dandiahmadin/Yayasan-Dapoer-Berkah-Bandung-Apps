@@ -167,6 +167,7 @@ public class AnggotaView extends javax.swing.JPanel implements AnggotaListener, 
             }
         });
 
+        tabelAnggota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tabelAnggota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
