@@ -153,6 +153,7 @@ public class DonaturView extends javax.swing.JPanel implements DonaturListener, 
         txtAlamat.setRows(5);
         jScrollPane1.setViewportView(txtAlamat);
 
+        tabelDonatur.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tabelDonatur.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
